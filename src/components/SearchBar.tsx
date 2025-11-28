@@ -1,4 +1,4 @@
-import './SearchBar.css';
+import "./SearchBar.css";
 
 interface SearchBarProps {
   searchQuery: string;

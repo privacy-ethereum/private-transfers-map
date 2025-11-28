@@ -1,16 +1,16 @@
-import { useState, useMemo } from 'react';
-import './App.css';
-import SearchBar from './components/SearchBar';
-import CategoryFilter from './components/CategoryFilter';
-import ProjectCard from './components/ProjectCard';
-import projectsData from './data/projects.json';
-import type { Project } from './types/Project';
+import { useState, useMemo } from "react";
+import "./App.css";
+import SearchBar from "./components/SearchBar";
+import CategoryFilter from "./components/CategoryFilter";
+import ProjectCard from "./components/ProjectCard";
+import projectsData from "./data/projects.json";
+import type { Project } from "./types/Project";
 
 const projects: Project[] = projectsData;
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const categories = useMemo(() => {
     const uniqueCategories = [...new Set(projects.map((p) => p.category))];
@@ -19,10 +19,11 @@ function App() {
 
   const filteredProjects = useMemo(() => {
     return projects.filter((project) => {
-      const matchesCategory = selectedCategory === '' || project.category === selectedCategory;
+      const matchesCategory =
+        selectedCategory === "" || project.category === selectedCategory;
       const query = searchQuery.toLowerCase();
       const matchesSearch =
-        query === '' ||
+        query === "" ||
         project.title.toLowerCase().includes(query) ||
         project.description.toLowerCase().includes(query);
       return matchesCategory && matchesSearch;
@@ -33,12 +34,17 @@ function App() {
     <div className="app">
       <header className="app-header">
         <h1>Private Transfers Map</h1>
-        <p className="subtitle">Explore and discover private transfer projects in the ecosystem</p>
+        <p className="subtitle">
+          Explore and discover private transfer projects in the ecosystem
+        </p>
       </header>
 
       <main className="app-main">
         <div className="filters">
-          <SearchBar searchQuery={searchQuery} onSearchChange={setSearchQuery} />
+          <SearchBar
+            searchQuery={searchQuery}
+            onSearchChange={setSearchQuery}
+          />
           <CategoryFilter
             categories={categories}
             selectedCategory={selectedCategory}
@@ -52,7 +58,10 @@ function App() {
 
         <div className="projects-grid">
           {filteredProjects.map((project) => (
-            <ProjectCard key={`${project.title}-${project.website}`} project={project} />
+            <ProjectCard
+              key={`${project.title}-${project.website}`}
+              project={project}
+            />
           ))}
         </div>
 

@@ -4,81 +4,47 @@
     "category": "zkWormholes",
     "website": "https://worm.cx/",
     "description": "This project enables private cross-chain transfers through zero-knowledge wormholes.",
-    "pros": [
-      "pausable denialbility"
-    ],
-    "cons": [
-      "vulnerable anonymous set in the future"
-    ]
+    "pros": ["pausable denialbility"],
+    "cons": ["vulnerable anonymous set in the future"]
   },
   {
     "title": "Tornado Cash",
     "category": "Mixers",
     "website": "https://tornado.cash/",
     "description": "A decentralized protocol for private transactions on Ethereum using zero-knowledge proofs.",
-    "pros": [
-      "large anonymity set",
-      "battle-tested"
-    ],
-    "cons": [
-      "regulatory concerns",
-      "requires trusted setup"
-    ]
+    "pros": ["large anonymity set", "battle-tested"],
+    "cons": ["regulatory concerns", "requires trusted setup"]
   },
   {
     "title": "Railgun",
     "category": "Privacy Wallets",
     "website": "https://railgun.org/",
     "description": "Privacy system for DeFi that brings privacy directly to smart contracts.",
-    "pros": [
-      "DeFi compatible",
-      "no bridging required"
-    ],
-    "cons": [
-      "complex setup",
-      "gas intensive"
-    ]
+    "pros": ["DeFi compatible", "no bridging required"],
+    "cons": ["complex setup", "gas intensive"]
   },
   {
     "title": "Aztec",
     "category": "zkRollups",
     "website": "https://aztec.network/",
     "description": "A privacy-first zk-rollup for Ethereum with confidential smart contracts.",
-    "pros": [
-      "native privacy",
-      "EVM compatible"
-    ],
-    "cons": [
-      "still in development",
-      "limited ecosystem"
-    ]
+    "pros": ["native privacy", "EVM compatible"],
+    "cons": ["still in development", "limited ecosystem"]
   },
   {
     "title": "Zcash",
     "category": "Privacy Coins",
     "website": "https://z.cash/",
     "description": "A privacy-protecting digital currency with shielded transactions.",
-    "pros": [
-      "proven technology",
-      "strong community"
-    ],
-    "cons": [
-      "transparent addresses optional",
-      "smaller market cap"
-    ]
+    "pros": ["proven technology", "strong community"],
+    "cons": ["transparent addresses optional", "smaller market cap"]
   },
   {
     "title": "Portal Gate",
     "category": "zkWormholes",
     "website": "https://portalgate.io/",
     "description": "A cross-chain privacy bridge enabling anonymous transfers between chains.",
-    "pros": [
-      "multi-chain support",
-      "low fees"
-    ],
-    "cons": [
-      "newer project",
-      "limited audits"
-    ]
+    "pros": ["multi-chain support", "low fees"],
+    "cons": ["newer project", "limited audits"]
   }
 ]
