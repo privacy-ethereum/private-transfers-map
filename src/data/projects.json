@@ -4,7 +4,7 @@
     "category": "zkWormholes",
     "website": "https://worm.cx/",
     "description": "This project enables private cross-chain transfers through zero-knowledge wormholes.",
-    "pros": ["pausable denialbility"],
+    "pros": ["pausable deniability"],
     "cons": ["vulnerable anonymous set in the future"]
   },
   {
