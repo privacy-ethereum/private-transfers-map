@@ -1,5 +1,5 @@
-import type { Project } from '../types/Project';
-import './ProjectCard.css';
+import type { Project } from "../types/Project";
+import "./ProjectCard.css";
 
 interface ProjectCardProps {
   project: Project;
@@ -9,13 +9,17 @@ function ProjectCard({ project }: ProjectCardProps) {
   return (
     <div className="project-card">
       <div className="project-header">
-        <h3 className="project-title">
-          <a href={project.website} target="_blank" rel="noopener noreferrer">
-            {project.title}
-          </a>
-        </h3>
+        <h3 className="project-title">{project.title}</h3>
         <span className="project-category">{project.category}</span>
       </div>
+      <a
+        href={project.website}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="project-website"
+      >
+        {project.website}
+      </a>
       <p className="project-description">{project.description}</p>
       <div className="project-lists">
         {project.pros.length > 0 && (

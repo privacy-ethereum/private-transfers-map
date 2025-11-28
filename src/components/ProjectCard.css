@@ -3,7 +3,9 @@
   border-radius: 12px;
   padding: 1.5rem;
   text-align: left;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .project-card:hover {
@@ -40,6 +42,12 @@
   border-radius: 12px;
   font-size: 0.75rem;
   white-space: nowrap;
+}
+
+.project-website {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #ffffff;
 }
 
 .project-description {
