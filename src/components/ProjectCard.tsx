@@ -1,48 +1,42 @@
 import type { Project } from "../types/Project";
 import "./ProjectCard.css";
 
+const MAX_DESCRIPTION_LENGTH = 90;
+const TRUNCATION_SUFFIX = "...";
+
 interface ProjectCardProps {
   project: Project;
+  onClick: () => void;
 }
 
-function ProjectCard({ project }: ProjectCardProps) {
+function ProjectCard({ project, onClick }: ProjectCardProps) {
+  const shortDescription =
+    project.description.length > MAX_DESCRIPTION_LENGTH
+      ? project.description.substring(
+          0,
+          MAX_DESCRIPTION_LENGTH - TRUNCATION_SUFFIX.length
+        ) + TRUNCATION_SUFFIX
+      : project.description;
+
+  const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src = "/vite.svg";
+  };
+
   return (
-    <div className="project-card">
+    <div className="project-card" onClick={onClick}>
       <div className="project-header">
-        <h3 className="project-title">{project.title}</h3>
-        <span className="project-category">{project.category}</span>
+        <img
+          src={project.logo}
+          alt={`${project.title} logo`}
+          className="project-logo"
+          onError={handleLogoError}
+        />
+        <div className="project-header-info">
+          <h3 className="project-title">{project.title}</h3>
+          <span className="project-category">{project.category}</span>
+        </div>
       </div>
-      <a
-        href={project.website}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="project-website"
-      >
-        {project.website}
-      </a>
-      <p className="project-description">{project.description}</p>
-      <div className="project-lists">
-        {project.pros.length > 0 && (
-          <div className="pros">
-            <h4>Pros</h4>
-            <ul>
-              {project.pros.map((pro, index) => (
-                <li key={index}>{pro}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {project.cons.length > 0 && (
-          <div className="cons">
-            <h4>Cons</h4>
-            <ul>
-              {project.cons.map((con, index) => (
-                <li key={index}>{con}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
+      <p className="project-description">{shortDescription}</p>
     </div>
   );
 }

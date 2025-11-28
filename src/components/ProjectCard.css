@@ -3,6 +3,7 @@
   border-radius: 12px;
   padding: 1.5rem;
   text-align: left;
+  cursor: pointer;
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -15,10 +16,22 @@
 
 .project-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
   gap: 1rem;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.project-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.project-header-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
 }
 
 .project-title {
@@ -42,59 +55,13 @@
   border-radius: 12px;
   font-size: 0.75rem;
   white-space: nowrap;
-}
-
-.project-website {
-  margin-bottom: 1rem;
-  font-size: 0.875rem;
-  color: #ffffff;
+  width: fit-content;
 }
 
 .project-description {
   color: #aaa;
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-.project-lists {
-  display: flex;
-  gap: 2rem;
-}
-
-.pros,
-.cons {
-  flex: 1;
-}
-
-.pros h4,
-.cons h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.pros h4 {
-  color: #4caf50;
-}
-
-.cons h4 {
-  color: #f44336;
-}
-
-.pros ul,
-.cons ul {
   margin: 0;
-  padding-left: 1.25rem;
-  font-size: 0.875rem;
-}
-
-.pros li {
-  color: #81c784;
-}
-
-.cons li {
-  color: #e57373;
+  line-height: 1.5;
 }
 
 @media (prefers-color-scheme: light) {
@@ -109,20 +76,5 @@
 
   .project-description {
     color: #666;
-  }
-
-  .pros li {
-    color: #2e7d32;
-  }
-
-  .cons li {
-    color: #c62828;
-  }
-}
-
-@media (max-width: 600px) {
-  .project-lists {
-    flex-direction: column;
-    gap: 1rem;
   }
 }

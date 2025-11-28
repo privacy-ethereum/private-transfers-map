@@ -1,0 +1,169 @@
+.project-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.back-button {
+  background-color: transparent;
+  border: 1px solid #646cff;
+  color: #646cff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #646cff;
+  color: white;
+}
+
+.project-page-content {
+  background-color: #2a2a2a;
+  border-radius: 16px;
+  padding: 2rem;
+}
+
+.project-page-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-page-logo {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.project-page-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.project-page-title {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.project-page-category {
+  background-color: rgba(100, 108, 255, 0.2);
+  color: #646cff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.875rem;
+  width: fit-content;
+}
+
+.project-page-website {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  color: #646cff;
+}
+
+.project-page-website:hover {
+  text-decoration: underline;
+}
+
+.project-page-description {
+  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.project-page-lists {
+  display: flex;
+  gap: 2rem;
+}
+
+.project-page-pros,
+.project-page-cons {
+  flex: 1;
+}
+
+.project-page-pros h3,
+.project-page-cons h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.project-page-pros h3 {
+  color: #4caf50;
+}
+
+.project-page-cons h3 {
+  color: #f44336;
+}
+
+.project-page-pros ul,
+.project-page-cons ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  font-size: 1rem;
+}
+
+.project-page-pros li {
+  color: #81c784;
+  margin-bottom: 0.5rem;
+}
+
+.project-page-cons li {
+  color: #e57373;
+  margin-bottom: 0.5rem;
+}
+
+@media (prefers-color-scheme: light) {
+  .project-page-content {
+    background-color: #f5f5f5;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+
+  .project-page-description {
+    color: #555;
+  }
+
+  .project-page-pros li {
+    color: #2e7d32;
+  }
+
+  .project-page-cons li {
+    color: #c62828;
+  }
+}
+
+@media (max-width: 600px) {
+  .project-page {
+    padding: 1rem;
+  }
+
+  .project-page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .project-page-logo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .project-page-title {
+    font-size: 1.5rem;
+  }
+
+  .project-page-lists {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+}

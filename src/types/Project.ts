@@ -3,6 +3,7 @@ export interface Project {
   category: string;
   website: string;
   description: string;
+  logo: string;
   pros: string[];
   cons: string[];
 }
