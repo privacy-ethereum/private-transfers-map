@@ -10,12 +10,13 @@ function ProjectCard({ project }: ProjectCardProps) {
     <div className="project-card">
       <div className="project-header">
         <h3 className="project-title">
-          <a href={project.website} target="_blank" rel="noopener noreferrer">
-            {project.title}
-          </a>
+          {project.title}
         </h3>
         <span className="project-category">{project.category}</span>
       </div>
+      <a href={project.website} target="_blank" rel="noopener noreferrer" className="project-website">
+        {project.website}
+      </a>
       <p className="project-description">{project.description}</p>
       <div className="project-lists">
         {project.pros.length > 0 && (

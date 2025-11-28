@@ -42,6 +42,12 @@
   white-space: nowrap;
 }
 
+.project-website {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: #ffffff;
+}
+
 .project-description {
   color: #aaa;
   margin-bottom: 1rem;
