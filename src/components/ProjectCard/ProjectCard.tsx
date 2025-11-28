@@ -1,8 +1,9 @@
-import type { Project } from "../types/Project";
-import { truncateText } from "../utils/truncateText";
+import { useMemo } from "react";
+import type { Project } from "../../types/Project";
+import { truncateText } from "../../utils/truncateText";
 import "./ProjectCard.css";
 
-const MAX_DESCRIPTION_LENGTH = 90;
+const MAX_DESCRIPTION_LENGTH = 75;
 
 interface ProjectCardProps {
   project: Project;
@@ -10,9 +11,9 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, onClick }: ProjectCardProps) {
-  const shortDescription = truncateText(
-    project.description,
-    MAX_DESCRIPTION_LENGTH
+  const shortDescription = useMemo(
+    () => truncateText(project.description, MAX_DESCRIPTION_LENGTH),
+    [project.description]
   );
 
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
