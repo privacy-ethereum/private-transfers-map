@@ -4,6 +4,7 @@
     "category": "zkWormholes",
     "website": "https://worm.cx/",
     "description": "This project enables private cross-chain transfers through zero-knowledge wormholes.",
+    "logo": "/logos/zkWormholes/worm.svg",
     "pros": ["pausable deniability"],
     "cons": ["vulnerable anonymous set in the future"]
   },
@@ -12,6 +13,7 @@
     "category": "Mixers",
     "website": "https://tornado.cash/",
     "description": "A decentralized protocol for private transactions on Ethereum using zero-knowledge proofs.",
+    "logo": "/logos/Mixers/tornado-cash.svg",
     "pros": ["large anonymity set", "battle-tested"],
     "cons": ["regulatory concerns", "requires trusted setup"]
   },
@@ -20,6 +22,7 @@
     "category": "Privacy Wallets",
     "website": "https://railgun.org/",
     "description": "Privacy system for DeFi that brings privacy directly to smart contracts.",
+    "logo": "/logos/Privacy Wallets/railgun.svg",
     "pros": ["DeFi compatible", "no bridging required"],
     "cons": ["complex setup", "gas intensive"]
   },
@@ -28,6 +31,7 @@
     "category": "zkRollups",
     "website": "https://aztec.network/",
     "description": "A privacy-first zk-rollup for Ethereum with confidential smart contracts.",
+    "logo": "/logos/zkRollups/aztec.svg",
     "pros": ["native privacy", "EVM compatible"],
     "cons": ["still in development", "limited ecosystem"]
   },
@@ -36,6 +40,7 @@
     "category": "Privacy Coins",
     "website": "https://z.cash/",
     "description": "A privacy-protecting digital currency with shielded transactions.",
+    "logo": "/logos/Privacy Coins/zcash.svg",
     "pros": ["proven technology", "strong community"],
     "cons": ["transparent addresses optional", "smaller market cap"]
   },
@@ -44,6 +49,7 @@
     "category": "zkWormholes",
     "website": "https://portalgate.io/",
     "description": "A cross-chain privacy bridge enabling anonymous transfers between chains.",
+    "logo": "/logos/zkWormholes/portal-gate.svg",
     "pros": ["multi-chain support", "low fees"],
     "cons": ["newer project", "limited audits"]
   }

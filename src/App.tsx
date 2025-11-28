@@ -3,6 +3,7 @@ import "./App.css";
 import SearchBar from "./components/SearchBar";
 import CategoryFilter from "./components/CategoryFilter";
 import ProjectCard from "./components/ProjectCard";
+import ProjectPage from "./components/ProjectPage";
 import projectsData from "./data/projects.json";
 import type { Project } from "./types/Project";
 
@@ -11,6 +12,7 @@ const projects: Project[] = projectsData;
 function App() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   const categories = useMemo(() => {
     const uniqueCategories = [...new Set(projects.map((p) => p.category))];
@@ -29,6 +31,15 @@ function App() {
       return matchesCategory && matchesSearch;
     });
   }, [searchQuery, selectedCategory]);
+
+  if (selectedProject) {
+    return (
+      <ProjectPage
+        project={selectedProject}
+        onBack={() => setSelectedProject(null)}
+      />
+    );
+  }
 
   return (
     <div className="app">
@@ -61,6 +72,7 @@ function App() {
             <ProjectCard
               key={`${project.title}-${project.website}`}
               project={project}
+              onClick={() => setSelectedProject(project)}
             />
           ))}
         </div>
