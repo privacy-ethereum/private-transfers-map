@@ -1,0 +1,39 @@
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.category-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  border-radius: 20px;
+  border: 1px solid #444;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.category-btn:hover {
+  border-color: #646cff;
+  background-color: rgba(100, 108, 255, 0.1);
+}
+
+.category-btn.active {
+  background-color: #646cff;
+  border-color: #646cff;
+  color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  .category-btn {
+    border-color: #ccc;
+  }
+
+  .category-btn:hover {
+    background-color: rgba(100, 108, 255, 0.1);
+  }
+}
