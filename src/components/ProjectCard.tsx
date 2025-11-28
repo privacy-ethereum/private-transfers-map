@@ -1,8 +1,8 @@
 import type { Project } from "../types/Project";
+import { truncateText } from "../utils/truncateText";
 import "./ProjectCard.css";
 
 const MAX_DESCRIPTION_LENGTH = 90;
-const TRUNCATION_SUFFIX = "...";
 
 interface ProjectCardProps {
   project: Project;
@@ -10,13 +10,10 @@ interface ProjectCardProps {
 }
 
 function ProjectCard({ project, onClick }: ProjectCardProps) {
-  const shortDescription =
-    project.description.length > MAX_DESCRIPTION_LENGTH
-      ? project.description.substring(
-          0,
-          MAX_DESCRIPTION_LENGTH - TRUNCATION_SUFFIX.length
-        ) + TRUNCATION_SUFFIX
-      : project.description;
+  const shortDescription = truncateText(
+    project.description,
+    MAX_DESCRIPTION_LENGTH
+  );
 
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
     e.currentTarget.src = "/vite.svg";
