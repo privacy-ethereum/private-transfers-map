@@ -1,5 +1,5 @@
 .project-card {
-  background-color: #2a2a2a;
+  background-color: var(--anakiwa-900);
   border-radius: 12px;
   padding: 1.5rem;
   text-align: left;
@@ -40,7 +40,7 @@
 }
 
 .project-title a {
-  color: #646cff;
+  color: var(--base-primary);
   text-decoration: none;
 }
 
@@ -49,8 +49,8 @@
 }
 
 .project-category {
-  background-color: rgba(100, 108, 255, 0.2);
-  color: #646cff;
+  background-color: rgba(80, 195, 224, 0.2);
+  color: var(--base-primary);
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
   font-size: 0.75rem;
@@ -59,22 +59,7 @@
 }
 
 .project-description {
-  color: #aaa;
+  color: var(--anakiwa-300);
   margin: 0;
   line-height: 1.5;
-}
-
-@media (prefers-color-scheme: light) {
-  .project-card {
-    background-color: #f5f5f5;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .project-card:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  }
-
-  .project-description {
-    color: #666;
-  }
 }

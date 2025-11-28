@@ -10,7 +10,7 @@
   padding: 0.5rem 1rem;
   font-size: 0.875rem;
   border-radius: 20px;
-  border: 1px solid #444;
+  border: 1px solid var(--anakiwa-700);
   background-color: transparent;
   color: inherit;
   cursor: pointer;
@@ -18,22 +18,12 @@
 }
 
 .category-btn:hover {
-  border-color: #646cff;
-  background-color: rgba(100, 108, 255, 0.1);
+  border-color: var(--base-primary);
+  background-color: rgba(80, 195, 224, 0.1);
 }
 
 .category-btn.active {
-  background-color: #646cff;
-  border-color: #646cff;
-  color: white;
-}
-
-@media (prefers-color-scheme: light) {
-  .category-btn {
-    border-color: #ccc;
-  }
-
-  .category-btn:hover {
-    background-color: rgba(100, 108, 255, 0.1);
-  }
+  background-color: var(--base-primary);
+  border-color: var(--base-primary);
+  color: var(--anakiwa-950);
 }
