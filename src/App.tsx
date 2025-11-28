@@ -1,9 +1,9 @@
 import { useState, useMemo } from "react";
 import "./App.css";
-import SearchBar from "./components/SearchBar";
-import CategoryFilter from "./components/CategoryFilter";
-import ProjectCard from "./components/ProjectCard";
-import ProjectPage from "./components/ProjectPage";
+import SearchBar from "./components/SearchBar/SearchBar";
+import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
+import ProjectCard from "./components/ProjectCard/ProjectCard";
+import ProjectPage from "./components/ProjectPage/ProjectPage";
 import projectsData from "./data/projects.json";
 import type { Project } from "./types/Project";
 
