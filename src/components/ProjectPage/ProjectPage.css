@@ -6,8 +6,8 @@
 
 .back-button {
   background-color: transparent;
-  border: 1px solid #646cff;
-  color: #646cff;
+  border: 1px solid var(--base-primary);
+  color: var(--base-primary);
   padding: 0.75rem 1.5rem;
   border-radius: 8px;
   cursor: pointer;
@@ -19,12 +19,12 @@
 }
 
 .back-button:hover {
-  background-color: #646cff;
-  color: white;
+  background-color: var(--base-primary);
+  color: var(--anakiwa-950);
 }
 
 .project-page-content {
-  background-color: #2a2a2a;
+  background-color: var(--anakiwa-900);
   border-radius: 16px;
   padding: 2rem;
 }
@@ -55,8 +55,8 @@
 }
 
 .project-page-category {
-  background-color: rgba(100, 108, 255, 0.2);
-  color: #646cff;
+  background-color: rgba(80, 195, 224, 0.2);
+  color: var(--base-primary);
   padding: 0.25rem 0.75rem;
   border-radius: 12px;
   font-size: 0.875rem;
@@ -67,7 +67,7 @@
   display: inline-block;
   margin-bottom: 1.5rem;
   font-size: 1rem;
-  color: #646cff;
+  color: var(--base-primary);
 }
 
 .project-page-website:hover {
@@ -75,7 +75,7 @@
 }
 
 .project-page-description {
-  color: #ccc;
+  color: var(--anakiwa-200);
   font-size: 1.1rem;
   line-height: 1.7;
   margin-bottom: 2rem;
@@ -104,7 +104,7 @@
 }
 
 .project-page-cons h3 {
-  color: #f44336;
+  color: var(--base-accent);
 }
 
 .project-page-pros ul,
@@ -122,25 +122,6 @@
 .project-page-cons li {
   color: #e57373;
   margin-bottom: 0.5rem;
-}
-
-@media (prefers-color-scheme: light) {
-  .project-page-content {
-    background-color: #f5f5f5;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  }
-
-  .project-page-description {
-    color: #555;
-  }
-
-  .project-page-pros li {
-    color: #2e7d32;
-  }
-
-  .project-page-cons li {
-    color: #c62828;
-  }
 }
 
 @media (max-width: 600px) {

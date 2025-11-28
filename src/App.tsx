@@ -44,9 +44,15 @@ function App() {
   return (
     <div className="app">
       <header className="app-header">
+        <img
+          src="/pse-horizontal-white.png"
+          alt="PSE Logo"
+          className="pse-logo"
+        />
         <h1>Private Transfers Map</h1>
         <p className="subtitle">
-          Explore and discover private transfer projects in the ecosystem
+          Explore and discover private transfer projects in the Ethereum
+          ecosystem
         </p>
       </header>
 

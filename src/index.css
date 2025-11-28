@@ -1,11 +1,32 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  /* Anakiwa Colors */
+  --anakiwa-50: #f2fafd;
+  --anakiwa-100: #e4f3fa;
+  --anakiwa-200: #c2e8f5;
+  --anakiwa-300: #a3dff0;
+  --anakiwa-400: #50c3e0;
+  --anakiwa-500: #29acce;
+  --anakiwa-600: #1a8baf;
+  --anakiwa-700: #166f8e;
+  --anakiwa-800: #175e75;
+  --anakiwa-900: #184f62;
+  --anakiwa-950: #103241;
+
+  /* Base Colors */
+  --base-light: #a3dff0;
+  --base-dark: #002c00;
+  --base-accent: #e3533a;
+  --base-gray: #f6f7f7;
+  --base-dark-gray: #161618;
+  --base-primary: #50c3e0;
+
+  font-family: "DM Sans", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color-scheme: dark;
+  color: var(--anakiwa-50);
+  background-color: var(--anakiwa-800);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +36,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: var(--base-primary);
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: var(--anakiwa-300);
 }
 
 body {
@@ -40,27 +61,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--anakiwa-900);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--base-primary);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+  outline: 4px auto var(--base-primary);
 }

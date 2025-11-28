@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Main headphone/lock shape -->
+  <path d="M60 15 C30 15 15 40 15 65 L15 75 L35 75 L35 65 C35 50 45 35 60 35 C75 35 85 50 85 65 L85 75 L105 75 L105 65 C105 40 90 15 60 15 Z" fill="#f2fafd"/>
+  
+  <!-- Left ear piece -->
+  <rect x="15" y="65" width="20" height="30" rx="3" fill="#f2fafd"/>
+  
+  <!-- Right ear piece -->
+  <rect x="85" y="65" width="20" height="30" rx="3" fill="#f2fafd"/>
+  
+  <!-- Cross/plus symbol -->
+  <rect x="52" y="70" width="16" height="35" fill="#f2fafd"/>
+  <rect x="42" y="82" width="36" height="12" fill="#f2fafd"/>
+</svg>

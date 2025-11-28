@@ -9,13 +9,23 @@
   margin-bottom: 2rem;
 }
 
+.pse-logo {
+  height: 40px;
+  width: auto;
+  margin-bottom: 1.5rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .app-header h1 {
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
+  font-weight: 500;
 }
 
 .subtitle {
-  color: #888;
+  color: var(--anakiwa-300);
   font-size: 1.1rem;
   margin: 0;
 }
@@ -31,7 +41,7 @@
 
 .results-info {
   text-align: center;
-  color: #888;
+  color: var(--anakiwa-300);
   margin-bottom: 1.5rem;
   font-size: 0.9rem;
 }
@@ -45,7 +55,7 @@
 .no-results {
   text-align: center;
   padding: 3rem;
-  color: #888;
+  color: var(--anakiwa-300);
 }
 
 .no-results p {
