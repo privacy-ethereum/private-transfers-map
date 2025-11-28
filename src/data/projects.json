@@ -52,5 +52,23 @@
     "logo": "/logos/zkWormholes/portal-gate.svg",
     "pros": ["multi-chain support", "low fees"],
     "cons": ["newer project", "limited audits"]
+  },
+  {
+    "title": "Umbra",
+    "category": "Stealth Addresses",
+    "website": "https://umbra.cash/",
+    "description": "A privacy-preserving protocol for stealth payments on Ethereum using ERC-5564 stealth addresses.",
+    "logo": "/logos/Stealth Addresses/umbra.svg",
+    "pros": ["non-interactive payments", "multi-chain support", "open-source"],
+    "cons": ["deanonymization risks", "slow scanning"]
+  },
+  {
+    "title": "Fluidkey",
+    "category": "Stealth Addresses",
+    "website": "https://fluidkey.com/",
+    "description": "A self-custodial wallet using stealth addresses with ENS integration for private on-chain payments.",
+    "logo": "/logos/Stealth Addresses/fluidkey.svg",
+    "pros": ["seamless UX", "self-custody", "ENS integration"],
+    "cons": ["not fully untraceable", "L1 gas costs"]
   }
 ]
