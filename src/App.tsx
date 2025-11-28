@@ -52,7 +52,7 @@ function App() {
 
         <div className="projects-grid">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.title} project={project} />
+            <ProjectCard key={`${project.title}-${project.website}`} project={project} />
           ))}
         </div>
 
