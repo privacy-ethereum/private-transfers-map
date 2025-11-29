@@ -81,6 +81,39 @@
   margin-bottom: 2rem;
 }
 
+.project-page-description p {
+  margin: 0 0 1rem 0;
+}
+
+.project-page-description p:last-child {
+  margin-bottom: 0;
+}
+
+.project-page-description strong {
+  color: var(--anakiwa-100);
+  font-weight: 600;
+}
+
+.project-page-description ol,
+.project-page-description ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.project-page-description li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.project-page-description a {
+  color: var(--base-primary);
+  text-decoration: underline;
+}
+
+.project-page-description a:hover {
+  color: var(--anakiwa-300);
+}
+
 .project-page-lists {
   display: flex;
   gap: 2rem;
@@ -120,7 +153,7 @@
 }
 
 .project-page-cons li {
-  color: #e57373;
+  color: var(--base-accent);
   margin-bottom: 0.5rem;
 }
 

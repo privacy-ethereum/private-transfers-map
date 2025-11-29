@@ -8,7 +8,7 @@ interface ProjectPageProps {
 
 function ProjectPage({ project, onBack }: ProjectPageProps) {
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = "/vite.svg";
+    e.currentTarget.src = "/pse-logo-white.png";
   };
 
   return (
@@ -40,7 +40,10 @@ function ProjectPage({ project, onBack }: ProjectPageProps) {
           {project.website}
         </a>
 
-        <p className="project-page-description">{project.description}</p>
+        <div
+          className="project-page-description"
+          dangerouslySetInnerHTML={{ __html: project.description }}
+        />
 
         <div className="project-page-lists">
           {project.pros.length > 0 && (
@@ -48,7 +51,7 @@ function ProjectPage({ project, onBack }: ProjectPageProps) {
               <h3>Pros</h3>
               <ul>
                 {project.pros.map((pro, index) => (
-                  <li key={index}>{pro}</li>
+                  <li key={index} dangerouslySetInnerHTML={{ __html: pro }} />
                 ))}
               </ul>
             </div>
@@ -58,7 +61,7 @@ function ProjectPage({ project, onBack }: ProjectPageProps) {
               <h3>Cons</h3>
               <ul>
                 {project.cons.map((con, index) => (
-                  <li key={index}>{con}</li>
+                  <li key={index} dangerouslySetInnerHTML={{ __html: con }} />
                 ))}
               </ul>
             </div>

@@ -1,56 +1,511 @@
 [
   {
-    "title": "WORM",
-    "category": "zkWormholes",
-    "website": "https://worm.cx/",
-    "description": "This project enables private cross-chain transfers through zero-knowledge wormholes.",
-    "logo": "/logos/zkWormholes/worm.svg",
-    "pros": ["pausable deniability"],
-    "cons": ["vulnerable anonymous set in the future"]
-  },
-  {
     "title": "Tornado Cash",
     "category": "Mixers",
-    "website": "https://tornado.cash/",
-    "description": "A decentralized protocol for private transactions on Ethereum using zero-knowledge proofs.",
-    "logo": "/logos/Mixers/tornado-cash.svg",
-    "pros": ["large anonymity set", "battle-tested"],
-    "cons": ["regulatory concerns", "requires trusted setup"]
+    "website": "https://tornadocash.eth.limo/",
+    "description": "<p>Decentralized Ethereum protocol designed to make token transfers private. Instead of privacy being the default, Tornado Cash offers opt-in privacy by allowing users to deposit assets into a smart contract and later withdraw them to a different address without publicly linking the two. It uses <strong>zk-SNARKs (zero-knowledge proofs)</strong> to achieve unlinkability between sender and receiver, providing privacy at the transaction level.</p><p><strong>It’s achievable by using:</strong></p><ol><li><strong>zk-SNARKs</strong> – enable users to prove ownership of a deposit without revealing which one, ensuring the withdrawal can't be traced back to the deposit</li><li><strong>Fixed-denomination anonymity sets</strong> – assets are deposited in fixed amounts (e.g., 0.1 ETH, 1 ETH, 10 ETH), and privacy increases as more users deposit the same amount into the same pool</li><li><strong>Relayer network</strong> – allows users to withdraw to a fresh wallet address without revealing their identity or paying gas from that address, preserving anonymity</li><li><strong>Non-custodial smart contracts</strong> – funds are locked in smart contracts with no central entity in control, reducing the need for trust</li><li><strong>Open-source deployment</strong> – the code is public and was deployed immutably, meaning no one (not even the developers) can alter or shut down the contracts</li><li><strong>Merkle trees and commitments</strong> – track private balances and preserve unlinkability between deposit and withdrawal</li></ol>",
+    "logo": "/logos/mixers/tornado-cash.jpg",
+    "pros": [
+      "<strong>Strong cryptographic privacy</strong> – uses zk-SNARKs for robust anonymity guarantees",
+      "<strong>Non-custodial</strong> – users retain full control of their funds; no trusted third party",
+      "<strong>Open source and immutable</strong> – transparent code deployed on-chain, resistant to censorship",
+      "<strong>Relayers</strong> – supports relayers for gasless withdrawals, enhancing anonymity during withdrawal",
+      "<strong>Cross-chain support</strong> – deployed on Ethereum and other EVM-compatible chains"
+    ],
+    "cons": [
+      "<strong>Opt-in privacy</strong> – users must actively use Tornado Cash to gain anonymity",
+      "<strong>Fixed denominations</strong> – limits flexibility and transaction usability",
+      "<strong>Regulatory risk</strong> – sanctioned by U.S. Treasury (OFAC), creating legal uncertainties",
+      "<strong>Frontend removal</strong> – official frontends taken down, fragmenting user experience and reducing anonymity sets",
+      "<strong>No ERC-20</strong> – doesn't support ERC-20 tokens (only native)"
+    ]
+  },
+  {
+    "title": "Tornado Cash Nova",
+    "category": "Mixers",
+    "website": "https://nova.tornadocash.eth.limo/",
+    "description": "<p>Tornado Cash Nova is an upgraded privacy protocol built on Gnosis Chain (formerly xDai), designed to improve usability and flexibility. It retains the zero-knowledge privacy model but supports partial withdrawals and custom amounts, with lower fees and faster transactions.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>zk-SNARKs</strong> – adapted for an account-based privacy pool model rather than fixed pools</li><li><strong>Internal balances</strong> – allow partial withdrawals and internal transfers within the privacy pool without leaving it</li><li><strong>Gasless withdrawals via relayers</strong> – maintain full anonymity throughout the withdrawal process</li><li><strong>Low fees and fast finality</strong> – Gnosis Chain infrastructure reduces costs and speeds up transactions</li><li><strong>Merkle trees and commitments</strong> – track private balances and preserve unlinkability between deposit and withdrawal</li></ol>",
+    "logo": "/logos/mixers/tornado-cash.jpg",
+    "pros": [
+      "Flexible amounts – supports deposits and withdrawals of any amount, not just fixed sizes",
+      "Partial withdrawals – users can withdraw parts of their balance while maintaining privacy",
+      "Low fees – leverages Gnosis Chain to reduce transaction costs",
+      "Relayers – gasless withdrawals enhance privacy and user experience",
+      "Non-custodial – maintains the core privacy guarantees of zk-SNARKs without trusting intermediaries",
+      "ERC-20 support – supports ERC-20 tokens"
+    ],
+    "cons": [
+      "Opt-in privacy – anonymity depends on user adoption and active use",
+      "Smaller user base – fewer participants, limiting anonymity sets",
+      "Regulatory concerns – potential reputational risk due to association with Tornado Cash",
+      "Limited scope – focuses on transaction-level privacy, not full protocol or smart contract encryption"
+    ]
+  },
+  {
+    "title": "Privacy Pools",
+    "category": "Mixers",
+    "website": "https://privacypools.com/",
+    "description": "<p>Privacy Pools is a next-generation privacy protocol for Ethereum and compatible chains, designed to enable selective private transactions while maintaining regulatory compliance. It builds upon concepts from Tornado Cash but introduces compliance-friendly innovations, like association sets and public verification, to offer privacy without shielding illicit activity (offers opt-in privacy by allowing users to deposit assets into a smart contract and later withdraw them to a different address without publicly linking the two).</p><p><strong>It’s achievable by using:</strong></p><ol><li><strong>zk-SNARKs</strong> – to prove that a user is part of a set of valid depositors without revealing which one</li><li><strong>Association sets</strong> – user-defined sets of \"acceptable\" depositors that a withdrawal can prove association with</li><li><strong>Merkle trees and commitments</strong> – track private balances and preserve unlinkability between deposit and withdrawal</li><li><strong>Ragequit mechanism</strong> – allows users to exit the system and reclaim funds if their association set becomes nonviable</li><li><strong>Modular ASP Layer</strong> – external providers curate deposit association sets for compliance filtering</li></ol>",
+    "logo": "/logos/mixers/privacy-pools.svg",
+    "pros": [
+      "Regulatory-aware privacy – users can prove they belong to a compliant group of depositors",
+      "Partial withdrawals – like Nova, users aren’t limited to fixed pool amounts",
+      "Multi-asset support – supports ETH and ERC-20 tokens, unlike Tornado’s single-asset pools",
+      "Non-custodial – retains user control with cryptographic guarantees",
+      "Open source and modular – ASP system allows innovation without centralization"
+    ],
+    "cons": [
+      "Opt-in privacy – effectiveness depends on widespread use and well-formed association sets",
+      "Complexity – more advanced design requires deeper user understanding",
+      "Smaller anonymity sets (early-stage) – currently less usage than Tornado Cash or mixers like Aztec",
+      "Potential for misuse – though improved, still a privacy tool that may draw scrutiny from regulators",
+      "UX still maturing – setup and use may be less intuitive for non-technical users"
+    ]
+  },
+  {
+    "title": "Veil Cash",
+    "category": "Mixers",
+    "website": "https://www.veil.cash/",
+    "description": "<p>Veil Cash is a next-generation privacy protocol built on the Base network, enabling non-custodial, private transfers of ETH and ERC-20 tokens. Inspired by early privacy tools like Tornado Cash, it leverages zk-SNARKs to enable private deposits, transfers, and withdrawals, while introducing modern features like partial withdrawals, multi-asset support, and flexible user identities. It offers opt-in privacy by allowing users to deposit assets into a smart contract and later withdraw them to a different address without publicly linking the two.</p><p><strong>It’s achievable by using:</strong></p><ol><li><strong>zk-SNARKs</strong> – to prove membership in a private set of depositors without revealing which one, enabling unlinkable transfers and withdrawals</li><li><strong>Merkle trees and commitments</strong> – used to maintain a verifiable but private record of all deposits and transfers within the shielded pool</li><li><strong>Public and Private Keys (note-based model)</strong> – deposits generate a secret “note” (a private key) required to later spend or withdraw funds</li><li><strong>Compliance Verification (Optional)</strong> – supports integration with Ethereum Attestation Service or Coinbase-linked identities to prove \"verified\" users, potentially helping with regulatory clarity</li></ol>",
+    "logo": "/logos/mixers/veil-cash.jpg",
+    "pros": [
+      "Selective privacy – users can send/receive assets privately, optionally disclosing or proving origin if needed (e.g., to verified partners)",
+      "Partial withdrawals – unlike older privacy tools like Tornado Cash, users can deposit and withdraw arbitrary amounts, not just fixed denominations",
+      "Non-custodial – no central intermediaries; users control their funds and keys throughout",
+      "Staking and protocol revenue – VEIL token holders can stake to earn a share of protocol fees, incentivizing ecosystem growth",
+      "Open source and decentralized – contracts are MIT-licensed and deployed without centralized control"
+    ],
+    "cons": [
+      "Opt-in privacy – as with other privacy tools, effectiveness depends on the size of the anonymity set, low usage may reduce protection",
+      "Experimental – still in early development; documentation warns users of potential risk and instability",
+      "Complexity – managing keys, notes, and shielded transfers may be challenging for non-technical users",
+      "Privacy vs compliance tension – while \"verified user\" features exist, Veil doesn’t yet have full association set filtering like Privacy Pools",
+      "Regulatory scrutiny – as a privacy-focused protocol, it may still attract legal or compliance attention",
+      "No ERC-20 – doesn't support ERC-20 tokens (only native)"
+    ]
   },
   {
     "title": "Railgun",
-    "category": "Privacy Wallets",
-    "website": "https://railgun.org/",
-    "description": "Privacy system for DeFi that brings privacy directly to smart contracts.",
-    "logo": "/logos/Privacy Wallets/railgun.svg",
-    "pros": ["DeFi compatible", "no bridging required"],
-    "cons": ["complex setup", "gas intensive"]
+    "category": "Shielded Pools (+DeFi)",
+    "website": "https://www.railgun.org/",
+    "description": "<p>Private transfers are limited in scope - the goal is to obfuscate amounts, sender, recipient, and other transaction metadata on-chain, so that only authorized parties (sender, recipient, and optionally an auditor) know the full details. However, certain metadata (e.g. transaction existence, gas usage, ordering) are still visible.</p><p><strong>It is achievable by using:</strong></p><ol><li><strong>Encrypted balances / ciphertexts / UTXO commitments</strong> - Railgun uses a UTXO-style commitment model: balances are represented by encrypted UTXOs in a Merkle tree of commitments (observers cannot see plaintext balances)</li><li><strong>ZK proofs</strong> - all private interactions (shielding, transfers, unshielding) are accompanied by zk-SNARK proofs that verify correctness (e.g. no overspending, consistency, valid state transitions) without revealing sensitive data</li><li><strong>Trusted setup</strong> - they use Groth16 circuits, requires a trusted setup</li><li><strong>Viewing / audit keys / shareable read-only key</strong> - Railgun offers a \"shareable read-only private key\" that can reveal the origin of funds if shared, enabling selective disclosure / audit.</li><li><strong>Commitment / ciphertext updates</strong> - new UTXO commitments, updated states, and proofs are stores on-chain</li><li><strong>Event monitoring</strong> - recipients or auditors scan events, filter those concerning them, and use decryption / viewing keys to interpret the transfers</li><li><strong>Private Proofs of Innocence (POI / PPI)</strong> - Railgun includes Private Proofs of Innocence: a mechanism to cryptographically prove that tokens being shielded are not coming from a known blacklist of bad actors, without revealing which tokens or addresses are involved. When a shield occurs, a POI proof is auto-generated. The protocol also enforces an Unshield-Only Standby Period (initially 1 hour) during which tokens in a new shield can only be unshielded (not further interacted with), allowing blacklist updates to propagate and reducing risk of rapid address hopping.</li></ol>",
+    "logo": "/logos/shielded-pools/railgun.jpg",
+    "pros": [
+      "Amount privacy – 3rd parties cannot see how much was transferred",
+      "Sender / recipient obfuscation / unlinkability – shielded UTXO pools make it difficult to trace flows",
+      "Selective disclosure / auditability – shareable read-only private key enables optional transparency",
+      "EVM Native – privacy built directly on existing EVM chains",
+      "Composability – SDKs allow dApps to integrate private interactions",
+      "Bad actor filtering via POI – private proofs reduce risk of blacklisted funds entering the system"
+    ],
+    "cons": [
+      "Metadata leakage / structure leaks – timing, frequency, and patterns of transfers may still leak information",
+      "Anonymity set / adoption dependency – privacy is weak if only a few users or transfers use the confidential mechanism",
+      "Trusted setup – requires trusted setup for circuits, when new circuit designs or versions are introduced, new trusted setup and potential migration complexity arises",
+      "Cost / complexity – generating and verifying proofs, managing UTXO states, cross‑contract calls, and encryption/decryption impose computational and gas overhead",
+      "Delayed liquidity / cooldown periods – because of the Unshield‑Only standby period for POI, newly shielded funds may face delay before fully private interaction.",
+      "POI partial trust / list dependency – POI depends on external list providers for known bad actors"
+    ]
   },
   {
-    "title": "Aztec",
-    "category": "zkRollups",
-    "website": "https://aztec.network/",
-    "description": "A privacy-first zk-rollup for Ethereum with confidential smart contracts.",
-    "logo": "/logos/zkRollups/aztec.svg",
-    "pros": ["native privacy", "EVM compatible"],
-    "cons": ["still in development", "limited ecosystem"]
+    "title": "Blanksquare",
+    "category": "Shielded Pools (+DeFi)",
+    "website": "https://blanksquare.io/",
+    "description": "<p>Private transfers are limited in scope - the goal is to obfuscate amounts, sender, recipient, and other transaction metadata on-chain, so that only authorized parties (sender, recipient, and optionally an auditor) know the full details. However, certain metadata (e.g., transaction existence, gas usage, ordering) are still visible.</p><p><strong>It is achievable by using:</strong></p><ol><li><strong>Encrypted balances / shielded accounts / state commitments</strong> - uses account-based private state representations (not UTXO-style) where balances and state transitions are committed to via encrypted state commitments inside shielded pools</li><li><strong>ZK proofs</strong> - all interactions (shielding, transfers, withdrawals, etc.) are backed by zk-SNARK proofs</li><li><strong>Trusted setup</strong> - currently uses Groth16 circuits, which require a trusted setup</li><li><strong>Anonymity revokers / selective disclosure</strong> - optional on-chain or off-chain agents (e.g., regulated services, auditors) that can, under predefined rules, decrypt or trace shielded activity</li><li><strong>Shielded pool contract + proof storage</strong> - manages user privacy through Shielded Pool smart contracts, where encrypted state transitions and zk proofs are submitted on-chain</li><li><strong>Relayers</strong> - a relayer network submits transactions on behalf of users to prevent linkability from sender addresses or IPs</li><li><strong>Fraud protection + Shielder Guard</strong> - includes a mechanism to detect and prevent abuse, called Shielder Guard (combines behavior analytics, potential blacklisting, and integration with POI)</li></ol>",
+    "logo": "/logos/shielded-pools/blanksquare.png",
+    "pros": [
+      "Amount privacy – 3rd parties cannot see how much was transferred",
+      "Sender / recipient obfuscation / unlinkability – due to pooled shielding, it becomes challenging to link sender and receiver or trace flows",
+      "Selective disclosure / auditability – users can reveal fund origins when needed using viewing keys",
+      "EVM native – privacy built directly on EVM chains",
+      "Composability – SDKs enable dApps and wallets to integrate private interactions",
+      "Bad Actor Filtering via POI – reduces risk of illicit funds entering the system",
+      "Real-time ZK proofs – emphasis on fast proof generation (~1 second) makes privacy practical for real-time usage",
+      "No UTXO Complexity – uses account-based privacy, which avoids UTXO-style handling overhead and aligns with native EVM account models"
+    ],
+    "cons": [
+      "Metadata leakage / structure leaks – timing, frequency, and patterns of transfers may still leak information",
+      "Anonymity set / adoption dependency – privacy strength is correlated with the number of users utilizing the confidential mechanism",
+      "Cost / complexity – managing shielded accounts, relayers and anonymity revoking mechanisms may introduce additional overhead",
+      "Relayer trust assumptions – although relayers improve privacy, trusting relayers to behave properly (e.g. not colluding, not censoring) introduces risk"
+    ]
   },
   {
-    "title": "Zcash",
-    "category": "Privacy Coins",
-    "website": "https://z.cash/",
-    "description": "A privacy-protecting digital currency with shielded transactions.",
-    "logo": "/logos/Privacy Coins/zcash.svg",
-    "pros": ["proven technology", "strong community"],
-    "cons": ["transparent addresses optional", "smaller market cap"]
+    "title": "Labyrinth (Veilnyx)",
+    "category": "Shielded Pools (+DeFi)",
+    "website": "https://veilnyx.com/",
+    "description": "<p>Private transfers are limited in scope - the goal is to obfuscate amounts, sender, recipient, and other transaction metadata on-chain, so that only authorized parties (sender, recipient, and optionally an auditor) know the full details. However, certain metadata (e.g., transaction existence, gas usage, ordering) are still visible.</p><p><strong>It is achievable by using:</strong></p><ol><li><strong>Shielded accounts / encrypted state commitments</strong> – uses an account-based encrypted model, where user balances, nonces, and activity are committed to inside a shielded pool (unlike UTXO-based models, accounts are persistent and programmable)</li><li><strong>ZK proofs</strong> – transactions (deposits, transfers, compliance disclosures) are backed by zk-SNARKS</li><li><strong>Trusted setup</strong> – currently relies on Groth16 circuits, requiring a trusted setup ceremony</li><li><strong>Selective disclosure via Decom</strong> – a decentralized compliance network (Decom) governs optional de-anonymization (through threshold encryption and access control policies, authorized third parties can request limited, rule-based data access)</li><li><strong>Shielded pool</strong> – all encrypted state, proofs, and user interactions are managed by a smart contract that enforces the shielded system logic and proof verification.</li><li><strong>Relayers</strong> – to avoid correlating sender identities or IP addresses, Labyrinth (Veilnyx) supports a network of relayers that submit transactions on behalf of users</li><li><strong>POI</strong> – through behavioral analysis and integration with external verification systems (like POI), Labyrinth (Veilnyx) filters illicit activity while maintaining user privacy</li></ol>",
+    "logo": "/logos/shielded-pools/veilnyx.jpg",
+    "pros": [
+      "Amount privacy – 3rd parties cannot see how much was transferred",
+      "Sender / recipient obfuscation / unlinkability – pooled shielding makes tracing difficult",
+      "Persistent account model – avoids UTXO complexity using programmable accounts",
+      "Programmable compliance – selective disclosure via view keys or compliance attestations",
+      "EVM native – operates on standard EVM chains",
+      "DeFi-ready adapters – drop-in privacy support for common dApp patterns",
+      "Modular and scalable – circuits, compliance rules, and relayers are modular",
+      "Cross-chain and AA support – integrates with account abstraction and multichain deployments"
+    ],
+    "cons": [
+      "Metadata leakage / structure leaks – timing, frequency, and behavioral patterns may still leak data",
+      "Anonymity set / adoption dependency – privacy improves with more users",
+      "Cost / complexity – managing shielded accounts, relayers and anonymity revoking mechanisms may introduce additional overhead",
+      "Relayer trust assumptions – although relayers improve privacy, trusting relayers to behave properly (e.g. not colluding, not censoring) introduces risk"
+    ]
   },
   {
-    "title": "Portal Gate",
+    "title": "Tongo",
+    "category": "Shielded Pools (+DeFi)",
+    "website": "https://www.tongo.cash/",
+    "description": "<p>Private transfers are limited in scope - the goal is to obfuscate amounts (and optionally recipient) on-chain so that only authorized parties (sender, recipient, and optionally an auditor) know the full details. However, certain metadata (e.g. transaction existence and the sender) are still visible.</p><p><strong>It’s achievable by using:</strong></p><ol><li><strong>Encrypted balances / ciphertexts</strong> - accounts hold balances as encrypted values (via ElGamal) rather than plaintext on chain</li><li><strong>Zero-knowledge proofs</strong> - for each transfer or balance update, proofs ensure correctness (no overspending, conservation of totals) without revealing plaintext amounts</li><li><strong>Viewing / audit keys / decryption keys</strong> - users hold keys (or derive them) that allow them (or a designated auditor) to decrypt or verify their own transactions / balances</li><li><strong>Commitments / ciphertext updates on chain</strong> - encrypted state or commitments are published on chain to guarantee integrity</li><li><strong>Event / state monitoring + decryption</strong> - recipients (or auditors) scan relevant contract events or state changes and use their decryption / viewing keys to detect and interpret transfers</li></ol>",
+    "logo": "/logos/shielded-pools/tongo.jpg",
+    "pros": [
+      "Amount privacy - third parties cannot see how much was transferred",
+      "Optional recipient privacy / unlinkability - receiver identity or sender-receiver linkage can be hidden or obfuscated",
+      "Audit / selective disclosure - supports optional compliance through auditor or user-controlled disclosure",
+      "No trusted setup - uses ECC + proof systems without multi-party setup",
+      "Compatibility / composability - built for Starknet and compatible with token standards"
+    ],
+    "cons": [
+      "Sender visibility (likely) - the transaction originator is generally visible unless explicitly masked",
+      "Metadata leakage / structure leaks - timing, frequency, and patterns of transfers may still leak information",
+      "Anonymity set / adoption dependency - privacy is weak if only a few users or transfers use the confidential mechanism",
+      "Complex cryptography / cost - proof generation, encryption/decryption, and gas overhead",
+      "Key management burden - users must securely manage secret and viewing keys",
+      "Disclosure trade-offs - revealing keys or transactions forfeits privacy"
+    ]
+  },
+  {
+    "title": "Zama",
+    "category": "Shielded Pools (+DeFi)",
+    "website": "https://www.zama.org/",
+    "description": "<p>Private transfers are limited in scope - the goal is to hide amounts and balances so that only authorized parties (sender, recipient, and optionally an auditor) know the full details. However, certain metadata (e.g. transaction existence and the sender and the receiver) are still visible.</p><p><strong>It’s achievable by using:</strong></p><ol><li><strong>N</strong><strong>FHE</strong> - transfer amounts and balances stay encrypted in ciphertext form</li><li><strong>ZK Proofs</strong> - to ensure that encrypted inputs are valid without revealing them</li><li><strong>Threshold decryption / MPC-based Key Management Service (KMS)</strong> - decryption keys are split among multiple parties; no single party can decrypt alone.</li><li><strong>Access control logic in smart contracts</strong> - contracts specify who is allowed to decrypt which values.</li><li><strong>Symbolic execution + off-chain coprocessors</strong> - the chain emits pointers/events and off-chain nodes compute on the encrypted data, then return results.</li></ol>",
+    "logo": "/logos/shielded-pools/zama.jpg",
+    "pros": [
+      "Amount / Balance privacy - amounts, balances, and contract state are confidential by default to unauthorized observers",
+      "ACL for operations - developers can define who has decryption rights",
+      "Composability - confidential and non-confidential contracts are composable and compatible",
+      "EVM native solution - operates as an overlay layer on existing L1/L2s",
+      "No trusted setup - ZK is used only for input correctness and keys are managed with MPC"
+    ],
+    "cons": [
+      "Not fully private - sender and receiver are still visible",
+      "Metadata leakage - timing, frequency, and sequence of encrypted operations may leak information",
+      "Infrastructure complexity - requires coprocessors, MPC nodes, gateway, etc.",
+      "Cost and performance - FHE operations, MPC coordination, and ZK proofs incur high costs",
+      "Adoption / anonymity set - privacy improves with usage; low adoption weakens privacy",
+      "Disclosure trade-offs - revealing keys or decrypted values forfeits privacy",
+      "Decryption request / ACL visibility - decryption requests and access-policy checks are public, leaking metadata"
+    ]
+  },
+  {
+    "title": "Inco",
+    "category": "Shielded Pools (+DeFi)",
+    "website": "https://www.inco.org/",
+    "description": "<p>Private transfers are limited in scope - the goal is to hide amounts and balances so that only authorized parties (sender, recipient, and optionally an auditor) know the full details. However, certain metadata (e.g. transaction existence and the sender and the receiver) are still visible but claim that Inco Atlas will hide sender and receiver as well (not ready yet).</p><p><strong>It’s achievable by using:</strong></p><ol><li><strong>TEEs</strong> – in Inco Lightning, computations are done inside secure hardware enclaves, which keep data encrypted and hidden from node operators.</li><li><strong>FHE</strong> – data remains encrypted (ciphertext) during computation; no plaintext ever appears on-chain or off-chain (planned in Inco Atlas)</li><li><strong>ZK proofs</strong> – used to prove correctness of encrypted inputs or computation outcomes without revealing the inputs themselves</li><li><strong>MPC-based KMS (Key Management)</strong> – decryption keys are split among multiple parties (no single entity can decrypt alone)</li><li><strong>Programmable ACL</strong> – smart contracts define fine-grained rules on who can request and receive decrypted data, embedded in contract logic.</li><li><strong>Off-chain Confidential Coprocessors</strong> – TEEs or MPC nodes compute off-chain on encrypted data and return proofs/results back on-chain</li></ol>",
+    "logo": "/logos/shielded-pools/inco.jpg",
+    "pros": [
+      "Amount / Balance privacy – transfer amounts, balances, and confidential contract states remain encrypted",
+      "ACL for Operations – developers can define access policies for decryption and disclosure",
+      "Composability – confidential and non-confidential logic can be mixed in EVM-compatible contracts",
+      "EVM Native – works as a confidentiality layer on top of EVM chains",
+      "Upgradeable cryptography – modular design allows future upgrades (e.g., replacing TEEs with FHE)"
+    ],
+    "cons": [
+      "Not fully private – sender and recipient addresses are still visible on-chain (especially in TEE-based Lightning mode).",
+      "Metadata leakage – timing, frequency, and sequence of encrypted operations may reveal patterns",
+      "Infrastructure complexity – requires a network of specialized nodes: TEEs (for Lightning) or MPC/FHE nodes (for Atlas), bridge relays and off-chain coprocessors",
+      "Cost and performance – TEE operations are faster but rely on trusted hardware; FHE and MPC (Atlas) modes are significantly slower and more computationally expensive",
+      "Adoption / anonymity set – privacy improves with more users; low adoption weakens privacy",
+      "Disclosure trade-offs – revealing decryption keys or decrypted values forfeits privacy",
+      "Decryption request / ACL visibility – although data is encrypted, decryption requests are public, and policies must be enforced publicly, which leaks metadata (who requested decryption, when)"
+    ]
+  },
+  {
+    "title": "WORM",
     "category": "zkWormholes",
-    "website": "https://portalgate.io/",
-    "description": "A cross-chain privacy bridge enabling anonymous transfers between chains.",
-    "logo": "/logos/zkWormholes/portal-gate.svg",
-    "pros": ["multi-chain support", "low fees"],
-    "cons": ["newer project", "limited audits"]
+    "website": "https://worm.cx/",
+    "description": "<p>An app to use wormholes in the application layer rather than on the protocol layer. It keeps the logic of:</p><ol><li>burn ETH from address 0x1 with a proof that it has sent to an unspendable address</li><li>proof contains the amount of ETH burned = amount of BETH (Burned ETH)</li><li>Use proof to mint WORM with address 0x2</li><li>Swap WORM -> ETH with address 0x2</li></ol><p>As you can see, there is impossible to link address 0x1 to 0x2</p>",
+    "logo": "/logos/zkWormholes/worm.jpg",
+    "pros": [
+      "Amount privacy - tokens burned and tokens mint are visible to everybody. But the origin of those tokens remains private",
+      "Recipient privacy - the identity of the receiver or sender-receiver link is hidden because any wallet can use a PPoB proof to mint tokens",
+      "Audit / selective disclosure - users can save PPoB locally and show proofs of specific transactions if authorities require them",
+      "No external trust assumption - everything happens on-chain; proof generation may require external devices or services but trust isn't required",
+      "Compatibility / composability - minted tokens are native and easily integrable with dApps",
+      "Compliance - can integrate Proof-of-Innocence or on-chain third-party checks for regulatory compliance",
+      "Deployment complexity - no protocol changes required; anyone can deploy a similar app on any EVM quickly"
+    ],
+    "cons": [
+      "Liquidity - relies on sufficient WORM/ETH liquidity for safety",
+      "Competition - protocol-layer wormholes or competitor dApps could reduce WORM adoption",
+      "Cryptography risk - collisions between EOAs and zkwormhole addresses may be possible with high but finite attack cost",
+      "Anonymity set - privacy depends on number of users; small usage makes deposit-withdraw mapping easier",
+      "Broken anonymity set on the future - analysis techniques focused on single transfered addresses (burn addresses) could deanonymize users over time"
+    ]
+  },
+  {
+    "title": "Scroll experiment with EIP-7503",
+    "category": "zkWormholes",
+    "website": "https://www.notion.so/scrollzkp/WIP-Wormhole-RIP-2817792d22af80029818ee83cb1c54ba",
+    "description": "<p>Scroll tried to implement EIP-7503 into their rollup protocol (not in the app layer but in the protocol layer) but they found a couple of issues with the EIP itself. They stated that it is not as secure as possible.</p>",
+    "logo": "/logos/zkWormholes/scroll.jpg",
+    "pros": [
+      "General - Same as above (WORM implementation)",
+      "Deployment complexity - L2s could create a native mechanism (e.g. precompile) for PPoB private transfers; easier to develop and deploy on L2 than on L1"
+    ],
+    "cons": [
+      "General - Same as above (WORM implementation)",
+      "An error in the L2 implementation could allow infinite mint of tokens (ETH or others), potentially propagating to L1 if not caught in time"
+    ]
+  },
+  {
+    "title": "Grantee tried to integrate EIP-7503 in Berachain",
+    "category": "zkWormholes",
+    "website": "https://github.com/okwme/eip-7503-chain",
+    "description": "<p>It looks like a grant project that was done independently from the Berachain devs. I think it is interesting to look at because it might be \"simple\" to integrate EIP-7503 into EVM rollups code. More info in: https://devfolio.co/projects/eipchain-e85d</p>",
+    "logo": "/logos/zkWormholes/berachain.png",
+    "pros": [
+      "Showcase a EIP-7503 implementation is possible in another rollup besides Scroll"
+    ],
+    "cons": [
+      "No follow up. Looks like a grantee or hackathon project",
+      "Polaris Berachain EVM is discontinued so this code is deprecated"
+    ]
+  },
+  {
+    "title": "ZK Token Wrapper (ERC-8065)",
+    "category": "zkWormholes",
+    "website": "https://ethereum-magicians.org/t/erc-8065-zero-knowledge-token-wrapper/26006",
+    "description": "<p>This token wrapper aims to bring the zkWormhole idea (Private Proof of Burn - PPoB) into any existing token in the Ethereum ecosystem (including ERC-20, ERC-721, ERC-1155 and ERC-6909). In the non-fungible scenarios only the owner of the asset is hidden because each token is unique and there cannot be a coin-mixing functionality. Users will be able to wrap their tokens into a zk proof to break the link between the sender and the recipient. The proposal suggests two workflows:</p><ol><li><strong>ZKW Token-aware workflow:</strong> the user can use the ZKWTokens (representation of the burnt tokens) as if they were the original tokens. For example, if the underlying token is ERC-20, ZWToken can be traded on DEXs, used for swaps, liquidity provision, or standard transfers.</li><li><strong>ZKW Token-unaware workflow:</strong> the user A burns his tokens (e.g. ERC-20) and send the PPoB to user B to redeem ZKWTokens on its end. Then he swaps ZKW Tokens with original tokens (e.g. ERC-20) and he can use them as normal tokens.</li></ol>",
+    "logo": "/logos/zkWormholes/ZWToken.svg",
+    "pros": [
+      "Public amount: when shielding / burning tokens, the amount is visible because it is an on-chain transaction sending N tokens to a specific address proven to be unspendable",
+      "Public sender: the on-chain transaction shows the sender address and its balance history",
+      "Private recipient: after burning tokens, the PPoB can be redeemed from any wallet, breaking sender-recipient linkage",
+      "No external-trust assumption: no external service provider or coprocessor is required",
+      "Compliance: Proof of Innocence at the entry contract and selective disclosure stored client-side",
+      "Compatibility: ZKW Tokens remain compatible with existing Ethereum ecosystem depending on the underlying token"
+    ],
+    "cons": [
+      "Same as above: this is basically the same as WORM",
+      "Multiple tokens liquidity: privacy depends on liquidity per token; low-liquidity pools make deposit-withdraw mapping easier"
+    ]
+  },
+  {
+    "title": "Mirage",
+    "category": "Obfuscators",
+    "website": "https://www.mirageprivacy.com/",
+    "description": "<p>Aims to provide permissionless, probabilistic privacy on Ethereum by making on-chain contract logic and transaction flows harder to analyze so that sensitive links and intents become costly or ambiguous for observers.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>Deterministic EVM bytecode obfuscation (Azoth)</strong> – rewrite/transform contract bytecode so on-chain execution patterns and dataflow are harder to reverse-engineer while remaining verifiable and reproducible</li><li><strong>Worker nodes / agents (Nomads)</strong> – off-chain agents that perform coordination, apply obfuscation tooling and help manage protocol flows (with specified roles and incentives)</li><li><strong>On-chain escrow / incentive contracts</strong> – smart contracts that lock collateral and manage payments to Nomads to align incentives and penalize misbehavior</li><li><strong>Probabilistic privacy model</strong> – privacy is achieved by increasing the effort and ambiguity of analysis rather than providing absolute cryptographic secrecy</li><li><strong>Deterministic transformations + auditability</strong> – obfuscation is deterministic so others can reproduce/verify transformations while still hiding semantic structure</li><li><strong>Composability with existing Ethereum contracts</strong> – obfuscated contracts remain EVM-native and interoperable with the rest of the ecosystem</li></ol>",
+    "logo": "/logos/obfuscators/mirage.jpg",
+    "pros": [
+      "Ethereum-native – works on L1 without requiring new chains or consensus rules",
+      "Lower explicit trust assumptions – relies on incentives and on-chain contracts instead of trusted authorities",
+      "Practical and deployable – uses engineering approaches without heavy SNARK/STARK requirements",
+      "Verifiable determinism – deterministic obfuscation allows reproducibility and auditability",
+      "Incentive alignment via escrow – economic incentives and penalties maintain node reliability"
+    ],
+    "cons": [
+      "Not full cryptographic privacy – obfuscation increases difficulty but leakage remains possible",
+      "Probabilistic guarantees – privacy is statistical and weaker against motivated attackers",
+      "Dependence on anonymity set and adoption – small or predictable use weakens privacy",
+      "Operational and gas overheads – obfuscation and Nomad coordination increase costs",
+      "New attack surface (off-chain nodes) – Nomads introduce potential collusion or misbehavior risks",
+      "Metadata from deployment and registry – publishing obfuscated contracts or node info may leak metadata",
+      "User/developer hygiene matters – poor operational practices can erase privacy gains",
+      "Security audits and verification – difficult to audit obfuscated contracts",
+      "Not production ready – early stage, limited documentation. It looks like it is still in research phase"
+    ]
+  },
+  {
+    "title": "Unlink",
+    "category": "Obfuscators",
+    "website": "https://www.unlink.xyz/",
+    "description": "<p>Aims to provide seamless, protocol-level privacy on Ethereum by enabling private transactions through intents, escrow contracts, and solver networks, all integrated via SDKs into existing wallets and infrastructure. Focuses on making privacy usable at scale, so that unlinking transactions becomes the default rather than an exception.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>Intent-based escrow contracts</strong> – users deposit into an escrow contract that holds funds while waiting for a matching solver to execute the intent, enabling private settlement without direct on-chain linkage</li><li><strong>Relayers</strong> – off-chain agents that receive the user's intent, perform compliance checks, blind the intent, and submit it to the solver network</li><li><strong>Solver network</strong> – decentralized network of agents that execute the user's intent on-chain and are compensated from the escrow, ensuring unlinkability between sender and recipient</li><li><strong>Instant execution and composability</strong> – unlinking occurs within a single transaction flow; recipients receive instantly with no deposit/withdraw patterns, compatible with any token</li><li><strong>Standard denominations and timing</strong> – uses fixed transaction sizes and obfuscated timing to increase ambiguity and strengthen the anonymity set</li><li><strong>SDK integration</strong> – Unlink is a tooling-layer SDK that integrates directly into wallets, infrastructure, and apps, letting users toggle privacy without extra wallets, chains, or setup</li></ol>",
+    "logo": "/logos/obfuscators/unlink.jpg",
+    "pros": [
+      "EVM native - operates on Ethereum L1 without new chains or bridges",
+      "Easy integration - SDK plugs into wallets, infra, and dApps for private transactions",
+      "Instant and composable - no deposit/withdraw cycles and instant UX",
+      "Compliance - relayers enforce compliance checks before blinding intents",
+      "Adoption = stronger privacy – large-scale usage expands anonymity set"
+    ],
+    "cons": [
+      "Not full cryptographic privacy - relies on probabilistic unlinkability",
+      "Anonymity set = adoption - low volume weakens privacy",
+      "Relayer trust - off-chain actors may collude or misbehave; economic, not cryptographic mitigation",
+      "Early-stage - no code or documentation available yet",
+      "Metadata leakage – external wallet/gas/social patterns can still reveal identity",
+      "Operational complexity – relayer, solver, and escrow coordination add overhead"
+    ]
+  },
+  {
+    "title": "Brume",
+    "category": "Wallets",
+    "website": "https://wallet.brume.money/",
+    "description": "<p>It is a browser wallet and a browser extension wallet that hides your IP using Tor. I will consider it in the private reads world. There is no mention to private transfers.</p>",
+    "logo": "/logos/wallets/brume.png",
+    "pros": [
+      "Web browsing privacy: Built-in TOR to hide IP address; each account has its own IP",
+      "Distributed redundant communication: one blockchain state request to multiple servers to ensure nobody is lying"
+    ],
+    "cons": [
+      "Lack of documentation: no available docs, only one diagram showing Tor integration for IP protection"
+    ]
+  },
+  {
+    "title": "ZkBob",
+    "category": "Wallets",
+    "website": "https://docs.zkbob.com/",
+    "description": "<p>A stablecoin-based privacy smart contract wallet (AA) deployed on Polygon and Optimism. Hides senders, receivers and amounts when transferring tokens. It integrates compliance features like daily limits, KYC, and more. They use a relayer to abstract gas fees and make it easy for users to interact with the wallet.</p><p>It works by depositing tokens into a pool and using zk proofs to move those funds inside the pool. Transfers are hidden because zk proofs update the shielded state without revealing details. One account can have multiple public addresses to send hidden tokens, preventing linkage between transactions. Only the owner knows these addresses are linked. The relayer sees nothing except zk proofs.</p>",
+    "logo": "/logos/wallets/zkBob.svg",
+    "pros": [
+      "Full privacy over sender, receiver, and balance: once funds are in the pool, all transfers are fully hidden via zk proofs",
+      "Gasless via relayer: users do not need native tokens to pay gas, improving UX and unlinkability",
+      "No external trust assumption: system does not require external MPC or FHE co-processors",
+      "Compliance: supports deposit/withdraw limits, optional KYC for higher limits, and address screening (e.g., TRM Labs)"
+    ],
+    "cons": [
+      "High gas costs: limited to Optimism and Polygon likely due to zk proof costs",
+      "Few tokens available: only USDC, ETH, and BOB pools exist; new tokens require new pool deployments",
+      "Anonymity set: privacy strength depends on pool size; low usage weakens protection",
+      "Metadata leakage: timing, frequency, and deposit/withdraw patterns may still enable correlation attacks"
+    ]
+  },
+  {
+    "title": "Payy (L2 on Ethereum)",
+    "category": "Wallets",
+    "website": "https://docs.payy.network/product/payy-network",
+    "description": "<p>It is currently implemented as a bespoke single-sequencer validium rollup on Polygon (Ethereum soon). It aggregates UTXO transaction proofs and hashes submitted by Payy Wallet and posts them to the base layer.</p><p>When you send a Payy Link or QR, funds are transferred from your wallet to a new ephemeral wallet embedded in the link. When someone claims the link, those funds are transferred out from the ephemeral wallet to their Payy wallet.</p><p>During both UTXO transactions, the actual payment data never leaves your device. It is cryptographically impossible for someone to infer the payment amount, sender, or recipient by watching the network. Even your Payy Address is never exposed.</p><p>This happens because the only data that leaves your device is an updated state hash and a zk proof. More technical details are in the whitepaper.</p>",
+    "logo": "/logos/wallets/payy.jpg",
+    "pros": [
+      "Private sender and receiver: client builds UTXO proofs locally and only transmits zk proofs + state hashes",
+      "Linkage resistance: ephemeral wallets + UTXO notes prevent linking transactions across addresses",
+      "Data minimization: only proofs and succinct hashes are on-chain, reducing gas costs",
+      "On-device privacy: sensitive data never leaves the device, protecting against network-level adversaries",
+      "Compliance-friendly: supports UTXO lineage checks, privacy pools, and Proof of Innocence"
+    ],
+    "cons": [
+      "L2 isolation: tokens must be bridged; currently focused on stablecoins",
+      "Data availability risk: off-chain storage of UTXO data introduces dependency on operator availability"
+    ]
+  },
+  {
+    "title": "Hinkal",
+    "category": "Wallets",
+    "website": "https://hinkal-team.gitbook.io/hinkal",
+    "description": "<p>Wallet that uses smart contracts, stealth addresses, UTXO models, and zk proofs to maintain an encrypted private balance and allow users to privately send transactions between encrypted pool members. Users deposit funds to stealth addresses (unlinkable), and withdraw via zk proofs showing sufficient encrypted balance.</p>",
+    "logo": "/logos/wallets/hinkal.avif",
+    "pros": [
+      "Private sender, receiver, and balance: uses zk-proofs and UTXO models where only proofs are on-chain",
+      "Gas abstraction: relayers allow gasless transactions",
+      "Composability with DeFi: supports private swaps, staking, and lending via integrations (Uniswap, AAVE, Lido, etc.)",
+      "Compliance: includes KYC gating, blacklist screening, zkMe attestations, and anonymous staking"
+    ],
+    "cons": [
+      "Compliance undermines full anonymity: the requirement to pass KYC (via aiPrise / external provider) before accessing the shielded pool means not everyone can be anonymized. Users who cannot/do not want to do KYC are excluded, reducing potential anonymity set. Also, the access-token architecture is a single point where PII and wallet linkage might be revealed under legal demands.",
+      "Relayer trust / centralization risk: centralized or malicious relayers may censor or reduce liveness",
+      "Anonymity set: privacy depends heavily on pool size; low usage weakens protection"
+    ]
+  },
+  {
+    "title": "Kohaku",
+    "category": "Wallets",
+    "website": "https://notes.ethereum.org/@niard/KohakuRoadmap",
+    "description": "<p>The EF's official privacy-focused wallet. It will contain multiple plugins to enable different privacy protocols (starting with Railgun, Privacy Pools, etc.). This will be both a wallet and an SDK so other wallets can integrate easily. They are planning to show a demo at Devconnect, but based on GitHub activity they may need additional support.</p><p>1. The roadmap lists several stakeholders (Wonderland, EF, Ambire, PSE, Helios, etc.), but GitHub repos show contributions mainly from 3 EF members and 2 Wonderland developers.<br>2. The GitHub repos are separate and not in a monorepo; they seem to use the Ambire structure, which may be sufficient for now.</p>",
+    "logo": "/logos/wallets/kohaku.jpg",
+    "pros": [
+      "EF's support: multiple stakeholders are interested in participating",
+      "Neutral architecture: will implement various privacy protocols",
+      "Modularity: plugin/SDK design allows wallets to integrate only the privacy modules they need",
+      "EF coordination: potential to align privacy R&D across wallets, dApps, and infra teams",
+      "Beyond on-chain privacy: includes metadata/network/front-end protections such as Helios light client integration, P2P transaction broadcasting, per-dApp account isolation, ZK-based recovery, identity modules (ZKEmail, ZKPassport, Anon Aadhaar), and PQ signature fallback mechanisms"
+    ],
+    "cons": [
+      "Not production ready: still in early development",
+      "Complex third-party integration: wallet teams may struggle to adopt Kohaku",
+      "Fragmentation across protocols: multiple privacy systems (Railgun, stealth addresses, Privacy Pools) may split user funds across domains"
+    ]
+  },
+  {
+    "title": "Arcane Wallet",
+    "category": "Wallets",
+    "website": "https://docs.0x0.ai/0x0-ecosystem/arcane-privacy-wallet",
+    "description": "<p>A stealth addresses wallet that focuses on three main components:</p><ol><li><strong>Stealth Addresses:</strong> Arcane Wallet generates unique stealth addresses for each transaction, ensuring that the recipient’s identity remains hidden on-chain. This prevents third parties from tracing transactions back to a recipient’s public key.</li><li><strong>Enhanced Privacy:</strong> Using ephemeral keys and shared secrets, only the intended recipient can recognize and access the transaction. View tags act as identifiers to help the recipient scan and detect incoming transfers.</li><li><strong>User Experience:</strong> Arcane Wallet offers a familiar UX similar to traditional wallets while adding privacy features. Users can send and receive funds without needing to understand underlying cryptography.</li></ol>",
+    "logo": "/logos/wallets/arcane.avif",
+    "pros": [
+      "Privacy amount: the transacted amount is public because transactions are published on-chain",
+      "Private recipient: each transaction uses a fresh stealth address, hiding recipient identity and history",
+      "Public sender: sender reveals their public address unless using stealth addresses; Arcane UI uses stealth addresses to avoid leakage",
+      "ERC-20 compatibility: supports shielding and private transfers of any ERC-20 token",
+      "Modularity / Composability: tokens can be shielded in Arcane and unshielded to any wallet for DeFi/dApp usage",
+      "Gasless transactions: relayers sponsor gas in exchange for token-denominated fees to avoid leaking sender gas-address",
+      "Compliance: viewing key allows users to selectively disclose transactions"
+    ],
+    "cons": [
+      "Relayers metadata leakage: relayers may correlate users via metadata such as timing or IP",
+      "No easy adaptability: stealth-address logic differs from normal transfers, possibly causing UX friction",
+      "Anonymity set: low usage reduces privacy and makes metadata correlation more feasible",
+      "Public leaderboard: anonymous IDs with transaction volumes may imply internal address-linking capabilities"
+    ]
+  },
+  {
+    "title": "Umbra Cash",
+    "category": "Stealth Addresses",
+    "website": "https://app.umbra.cash/",
+    "description": "<p>Private transfers are limited in scope — the goal is to obfuscate the recipient address on-chain so that only the sender and receiver know who was paid. However, it does not hide amounts, senders, or full transaction context.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>Stealth addresses</strong> – ephemeral addresses generated by combining a random number and the recipient’s public key</li><li><strong>Two keypairs</strong> – users derive a spending key and viewing key from a signed message</li><li><strong>On-chain key registry</strong> – public keys for stealth address generation are published on-chain</li><li><strong>Encrypted announcement events</strong> – sender emits encrypted data so the recipient can detect funds</li><li><strong>Blockchain scanning</strong> – recipients monitor Umbra contract events and use their viewing key to detect payments</li></ol>",
+    "logo": "/logos/stealth-addresses/umbra-cash.jpg",
+    "pros": [
+      "Sender-to-receiver unlinkability – observers cannot see who received funds",
+      "Ethereum-native – works directly on Ethereum without new chains or exotic components",
+      "No trusted setup – uses ECC and signed messages rather than SNARKs",
+      "Optional relayers – supports gasless withdrawals via meta-transactions"
+    ],
+    "cons": [
+      "Not full privacy – sender and amount remain visible on-chain",
+      "Limited anonymity set – depends on how many valid recipients are registered",
+      "Recipient hygiene – withdrawing from the stealth address to a known address breaks privacy",
+      "On-chain key registration – may leak metadata if keys are linked to identities",
+      "Privacy degrades with heuristics – timing, withdrawal patterns, and registry activity can weaken unlinkability"
+    ]
+  },
+  {
+    "title": "Fluidkey",
+    "category": "Stealth Addresses",
+    "website": "https://fluidkey.com/",
+    "description": "<p>Private transfers are partial — Fluidkey uses stealth addresses to decouple your public identity from the address you receive funds to. However, it does not provide full privacy (e.g. hiding senders or amounts).</p><p><strong>It’s achievable by using:</strong></p><ol><li><strong>Account setup and key derivation</strong> – wallet signs a message to derive spending and viewing keys; public keys are published on-chain.</li><li><strong>Public key lookup by payer</strong> – sender finds spending/viewing public keys and generates a random scalar r.</li><li><strong>Stealth address generation and encryption</strong> – sender computes a stealth address using spending key + r; r is encrypted with the viewing key and emitted in an Announcement event.</li><li><strong>Sending funds and announcement</strong> – sender transfers funds to the stealth address; Announcement event includes encrypted r.</li><li><strong>Receiver scans announcements</strong> – receiver decrypts r using viewing key, computes stealth private key, and detects payments.</li><li><strong>Withdrawal / use of funds</strong> – receiver withdraws using the stealth key or via relayer for gasless UX.</li></ol>",
+    "logo": "/logos/stealth-addresses/fluidkey.jpg",
+    "pros": [
+      "Recipient anonymity – stealth addresses hide which public identity received funds",
+      "Ethereum-native – works entirely within the EVM ecosystem",
+      "No zero-knowledge proofs or heavy crypto – simpler design than ZK-based systems",
+      "Better UX via relayers – supports gasless withdrawals through meta-transactions"
+    ],
+    "cons": [
+      "Limited privacy – sender, amount, and metadata remain visible; only recipient link is hidden",
+      "Anonymity set considerations – small user base weakens privacy",
+      "Recipient hygiene matters – moving funds to a known address breaks privacy",
+      "Public key registration leaks metadata – ties spending/viewing keys to on-chain identities",
+      "Smart contract risks / gas cost – interacting with the contract or relayers introduces overhead and assumptions"
+    ]
+  },
+  {
+    "title": "Curvy",
+    "category": "Stealth Addresses",
+    "website": "https://curvy.box/",
+    "description": "<p>Private transfers are enabled by obfuscating recipient identity on-chain using stealth addresses and cryptographic primitives. It emphasizes sender-to-recipient unlinkability, not full transaction anonymity (amounts and senders are visible).</p><p><strong>It’s achievable by using:</strong></p><ol><li><strong>Stealth addresses</strong> – ephemeral addresses generated using recipient public keys and a unique nonce</li><li><strong>Two keypairs</strong> – derived from a Curvy ID: a spending key and a viewing key</li><li><strong>On-chain key registry</strong> – users register public keys to receive stealth payments</li><li><strong>Encrypted signals</strong> – senders post encrypted announcements detectable only by the intended recipient</li><li><strong>Blockchain scanning</strong> – users monitor Curvy events to detect incoming payments using their viewing key and tag for fast scanning</li></ol>",
+    "logo": "/logos/stealth-addresses/curvy.png",
+    "pros": [
+      "Recipient privacy – hides recipient identity on-chain",
+      "No trusted setup – relies on standard cryptographic assumptions of pairings and elliptic curves",
+      "Efficient scanning – tag system allows fast event detection without scanning all transactions",
+      "Wallet-native – integrates with existing EVM wallets via SDK"
+    ],
+    "cons": [
+      "View tag leakage / tag collisions – truncated fingerprints risk collisions or enumeration attacks; 64-bit tags work for millions but not billions",
+      "Anonymity set constraints – privacy depends heavily on user adoption and registry size",
+      "Metadata registration linking – published keys may link to identities if correlated externally",
+      "Heuristic and timing correlation – timing, gas, and behavioral patterns may reduce anonymity"
+    ]
   }
 ]

@@ -17,7 +17,7 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
   );
 
   const handleLogoError = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src = "/vite.svg";
+    e.currentTarget.src = "/pse-logo-white.png";
   };
 
   return (
@@ -34,7 +34,10 @@ function ProjectCard({ project, onClick }: ProjectCardProps) {
           <span className="project-category">{project.category}</span>
         </div>
       </div>
-      <p className="project-description">{shortDescription}</p>
+      <p
+        className="project-description"
+        dangerouslySetInnerHTML={{ __html: shortDescription }}
+      />
     </div>
   );
 }
