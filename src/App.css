@@ -1,42 +1,59 @@
 .app {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
-}
-
-.app-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.pse-logo {
-  height: 40px;
-  width: auto;
-  margin-bottom: 1.5rem;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.app-header h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.subtitle {
-  color: var(--anakiwa-300);
-  font-size: 1.1rem;
-  margin: 0;
 }
 
 .app-main {
   width: 100%;
 }
 
+.hero-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 2rem 0;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.pse-logo {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  max-width: 100%;
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.subtitle {
+  color: var(--anakiwa-300);
+  font-size: 1.2rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.hero-wheel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .filters {
-  max-width: 600px;
-  margin: 0 auto 2rem;
+  max-width: 800px;
+  margin: 2rem auto;
 }
 
 .results-info {
@@ -62,13 +79,37 @@
   font-size: 1.1rem;
 }
 
+@media (max-width: 1024px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero-content {
+    text-align: center;
+    align-items: center;
+  }
+
+  .pse-logo {
+    margin: 0 auto;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .app {
     padding: 1rem;
   }
 
-  .app-header h1 {
-    font-size: 1.75rem;
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
   }
 
   .projects-grid {

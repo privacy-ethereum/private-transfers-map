@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import "./App.css";
 import SearchBar from "./components/SearchBar/SearchBar";
-import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
+import CategoryWheel from "./components/CategoryWheel/CategoryWheel";
 import ProjectCard from "./components/ProjectCard/ProjectCard";
 import ProjectPage from "./components/ProjectPage/ProjectPage";
 import projectsData from "./data/projects.json";
@@ -43,30 +43,32 @@ function App() {
 
   return (
     <div className="app">
-      <header className="app-header">
-        <img
-          src="/pse-horizontal-white.png"
-          alt="PSE Logo"
-          className="pse-logo"
-        />
-        <h1>Private Transfers Map</h1>
-        <p className="subtitle">
-          Explore and discover private transfer projects in the Ethereum
-          ecosystem
-        </p>
-      </header>
-
       <main className="app-main">
-        <div className="filters">
-          <SearchBar
-            searchQuery={searchQuery}
-            onSearchChange={setSearchQuery}
-          />
-          <CategoryFilter
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onCategoryChange={setSelectedCategory}
-          />
+        <div className="hero-section">
+          <div className="hero-content">
+            <img
+              src="/pse-horizontal-white.png"
+              alt="PSE Logo"
+              className="pse-logo"
+            />
+            <h1>Private Transfers Map</h1>
+            <p className="subtitle">
+              Explore and discover private transfer projects in the Ethereum
+              ecosystem
+            </p>
+            <SearchBar
+              searchQuery={searchQuery}
+              onSearchChange={setSearchQuery}
+            />
+          </div>
+
+          <div className="hero-wheel">
+            <CategoryWheel
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onCategoryChange={setSelectedCategory}
+            />
+          </div>
         </div>
 
         <div className="results-info">
