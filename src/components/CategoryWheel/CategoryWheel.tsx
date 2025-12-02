@@ -1,6 +1,19 @@
 import { useState } from "react";
 import "./CategoryWheel.css";
 
+// Color mapping for categories
+const categoryColors: Record<string, string> = {
+  Mixers: "#D946A6",
+  "Private L2s": "#2563EB",
+  "Alternative L1s": "#0F172A",
+  Obfuscators: "#6B7280",
+  "Stealth Addresses": "#1E3A5F",
+  "Solana projects": "#14B8A6",
+  "Shielded Pools (+DeFi)": "#10B981",
+  zkWormholes: "#6366F1",
+  Wallets: "#4B5563",
+};
+
 interface CategoryWheelProps {
   categories: string[];
   selectedCategory: string;
@@ -13,19 +26,6 @@ function CategoryWheel({
   onCategoryChange,
 }: CategoryWheelProps) {
   const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
-
-  // Color mapping for categories
-  const categoryColors: Record<string, string> = {
-    Mixers: "#D946A6",
-    "Privacy L2s": "#2563EB",
-    "Alternative L1s": "#0F172A",
-    Obfuscators: "#6B7280",
-    "Stealth Addresses": "#1E3A5F",
-    "Solana projects": "#14B8A6",
-    "Shielded Pools (+DeFi)": "#10B981",
-    zkWormholes: "#6366F1",
-    Wallets: "#4B5563",
-  };
 
   const totalCategories = categories.length;
   const anglePerCategory = 360 / totalCategories;
@@ -71,6 +71,7 @@ function CategoryWheel({
         className="category-wheel"
         viewBox="0 0 300 300"
         xmlns="http://www.w3.org/2000/svg"
+        role="img"
       >
         <defs>
           {categories.map((category) => (
@@ -119,9 +120,7 @@ function CategoryWheel({
         {/* Labels */}
         {categories.map((category, index) => {
           const { x, y, rotation } = getLabelPosition(index);
-          const displayName = category
-            .replace(" (+DeFi)", "")
-            .replace("Privacy L2s", "Private L2s");
+          const displayName = category.replace(" (+DeFi)", "");
 
           return (
             <text

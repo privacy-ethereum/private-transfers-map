@@ -39,11 +39,6 @@
   user-select: none;
 }
 
-.wheel-center-text {
-  font-family: inherit;
-  user-select: none;
-}
-
 .selected-category-display {
   display: flex;
   align-items: center;
