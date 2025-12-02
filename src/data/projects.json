@@ -507,5 +507,577 @@
       "Metadata registration linking – published keys may link to identities if correlated externally",
       "Heuristic and timing correlation – timing, gas, and behavioral patterns may reduce anonymity"
     ]
+  },
+  {
+    "title": "Plasma Fold (PSE)",
+    "category": "Privacy L2s",
+    "website": "https://pse.dev/projects/plasma-fold",
+    "description": "<p>A scalable off-chain computation L2 that allows high-speed client-side proving while minimizing on-chain data. Users can generate proofs directly on their devices and contribute to the L2. It uses a UTXO-based design so users can incrementally prove their balances over time using Incrementally Verifiable Computation (IVC).</p>",
+    "logo": "/logos/private-l2s/pse-horizontal-white.png",
+    "pros": [
+      "Sender privacy: UTXO + client-side zk proofs hide sender balance and movements",
+      "Recipient privacy: incremental balance model hides recipient balance and movements",
+      "Amount privacy: only sender and recipient know the amount; only a correctness proof is public",
+      "Censorship resistance: zk proofs can be submitted directly if sequencer censors transactions",
+      "Audit / selective disclosure: users can selectively reveal specific UTXOs for compliance",
+      "Composability: L2 entry for private transfers and L1 exit for public DeFi/NFT/trading",
+      "Compliance: Proof-of-Innocence and selective disclosure of UTXOs possible"
+    ],
+    "cons": [
+      "No modularity: system is designed specifically for private transfers and requires entering/exiting the L2",
+      "Client-side proving: currently immature and challenging for seamless UX; IVC research aims to improve this",
+      "UTXOs kept locally: users must store UTXOs securely to maintain access to their balances",
+      "Still in research: no production-ready implementation yet"
+    ]
+  },
+  {
+    "title": "Intmax",
+    "category": "Privacy L2s",
+    "website": "https://intmax.io/#about",
+    "description": "<p>A stateless L2 providing privacy and performance. The block producer (sequencer) sends each user a proof of balance after every transaction; users sign and store these proofs locally. To send funds, a user combines the stored proof with a new zk proof authorizing spending, then sends the proof to the recipient, who verifies it and requests a fresh balance proof from the sequencer.</p><p>To increase proving efficiency, Intmax uses cyclic recursive ZKPs, so only the latest ZKP needs to be verified to validate the entire chain of transactions. Plasma Fold inherits several design elements from Intmax.</p>",
+    "logo": "/logos/private-l2s/intmax.jpg",
+    "pros": [
+      "Sender privacy: UTXO + client-side zk proofs hide sender balance and movements",
+      "Recipient privacy: local incremental balance model hides recipient balance and movements",
+      "Amount privacy: only sender and recipient know the amount; only a correctness proof is visible",
+      "Censorship resistance: zk proofs can be submitted directly if sequencer censors transactions",
+      "Audit / selective disclosure: users may selectively reveal specific UTXOs for compliance",
+      "Composability: requires entering L2 for private transactions and exiting for public L1 activity",
+      "Compliance: Proof-of-Innocence and selective UTXO disclosure are possible",
+      "Production-ready: Intmax L2 launched in June 2025 (stage 0 per L2Beat)"
+    ],
+    "cons": [
+      "Not mature enough: recently launched and based on untested fresh research",
+      "No modularity: system is specifically designed for private transfers and requires entering/exiting the L2",
+      "Client-side proving: not mature enough for seamless UX",
+      "UTXOs kept locally: users must securely store UTXOs to maintain access to balances"
+    ]
+  },
+  {
+    "title": "Scroll Cloak",
+    "category": "Privacy L2s",
+    "website": "https://scroll.io/blog/introducing-cloak",
+    "descriptio": "<p>A zk-validium that posts zk-proofs of correct state transitions to a settlement layer (Scroll). Only proofs are posted on-chain, not underlying data. Off-chain providers handle data availability, making it similar to a rollup but without the ability to withdraw from the settlement layer. Cloak supports EVM-compatible smart contracts and tooling.</p><p>Only the off-chain provider (RPC gateway + sequencer) can see all movements—similar to traditional banking, where operators see all internal activity but users don't see each other’s data. Cloak achieves confidentiality through fine-grained access control: sequencers and regulators can access data, while users can only access their own accounts.</p>",
+    "description": "<p>It is a zk-validium: post zk-proofs of correct state transition to a settlement layer that in this case is Scroll (could be considered a L3). It posts only proofs and not the data itself. Data can be handled to off-chain providers not related to Ethereum. It is like a rollup but without the ability to withdraw funds from the settlement layer (aka L1 or in this case Scroll). Cloak allows for EVM-compatible smart contracts and tooling.</p><p>Only the off-chain provider in charge of the RPC gateways and the sequencer can see all movements (similar to how banking system work nowadays. They can see all transactions inside the system but they decide to maintain privacy between users).</p><p>Cloak achieves confidentiality via fine-grained access control. This allows only chain operators (sequencers) and regulators to access the data. Users can freely access their own accounts, but they cannot query other users' data.</p>",
+    "logo": "/logos/zkWormholes/scroll.jpg",
+    "pros": [
+      "Private balances: users can see only their own balance, similar to traditional banking",
+      "Public sender and receiver: EVM-compatible structure, but transactions themselves are private since only proofs are posted",
+      "Gas efficient: sequencer posts only zk-proofs, enabling high throughput and low gas",
+      "Easy integration: works smoothly within the Scroll L2 ecosystem",
+      "Powering a stablecoin: the private stablecoin USX is being developed using Cloak"
+    ],
+    "cons": [
+      "Permissioned: this zk-validium technology is permissioned, it means that there is a central authority that manages all the state and can see all the transactions (no privacy at all). The system assumes that this authority is honest and will not leak private info. It feels like corporate private blockchains",
+      "Censorship: central sequencer could block or censor user transactions",
+      "Immature ecosystem: Scroll ecosystem is still small with few mature applications; stability and UX concerns cited"
+    ]
+  },
+  {
+    "title": "Miden",
+    "category": "Privacy L2s",
+    "website": "https://miden.xyz/resource/blog/vision",
+    "description": "<p>Users execute their own transactions locally and store their own state. ZK proofs of valid transactions reach the chain, where nodes verify compact proofs representing thousands or millions of valid transactions. This breaks the usual correlation between usage growth and performance limits, making privacy the default. Most transactions are executed and proven by users, so the network no longer needs to re-execute them.</p><p>Edge execution also removes limits on smart contract complexity. ZK proofs are exponentially faster to verify than the computations they represent. From the network’s perspective, a proof of a simple transfer and a proof of a massive ML computation are nearly equivalent to verify. Smart contract complexity is limited only by user hardware, not gas limits.</p>",
+    "logo": "/logos/private-l2s/miden.png",
+    "pros": [
+      "Private balances: UTXO model prevents outsiders from knowing a user's balance",
+      "Private recipient: receiving a transfer reveals nothing to the sender or public; only a zk-proof is visible",
+      "Private sender: only participants know sender/recipient; proofs reveal no balance or past activity",
+      "Scalable: users generate proofs locally; mobile or large hardware can be used depending on need",
+      "Censorship resistance: zk proofs can be submitted directly if sequencers censor transactions",
+      "Compliance compatible: users can selectively reveal specific UTXOs to authorities"
+    ],
+    "cons": [
+      "Deployment complexity: edge blockchains like Miden, PlasmaFold, and Aztec are still in research and not battle-tested",
+      "Local storage: users must store their UTXOs and maintain local state",
+      "L2 private transfers: system exists outside main EVM ecosystem; bridging is required for interaction with EVM dApps"
+    ]
+  },
+  {
+    "title": "Aztec",
+    "category": "Privacy L2s",
+    "website": "https://docs.aztec.network/developers/docs/concepts",
+    "description": "<p>This is the GOAT L2 (and potentially a future L1). Aztec combines edge blockchains (private state) with public blockchains (public state) in the Aztec Virtual Machine (AVM). The private state is a chain of note hashes with a nullifier tree, stored locally by users to ensure full privacy of transfers and execution.</p><p>The public state is an EVM-like environment. Private functions can call public functions, but public functions cannot call private ones. Private state is computed locally, a proof is generated, and then submitted to the public state for global state updates.</p>",
+    "logo": "/logos/private-l2s/aztec.jpg",
+    "pros": [
+      "Sender privacy: UTXO + client-side zk-proofs hide sender balance and movements",
+      "Recipient privacy: local balance system hides recipient balance and movements",
+      "Amount privacy: only sender and recipient know the transferred amount; only a correctness proof is public",
+      "Censorship resistance: zk proofs can be submitted directly; sequencer decentralization underway",
+      "Audit / selective disclosure: users can show specific UTXOs without revealing full state",
+      "Composability: requires entering L2 for private actions, exiting to L1 for public DeFi/NFT/etc.",
+      "Compliance: selective disclosure enables individual transaction audits without revealing full state",
+      "Research-focus: Aztec drives cutting-edge work on edge blockchains and client-side proving",
+      "Ethereum-aligned: shares ethos of decentralization with EF",
+      "Native cross-chain communication: integrates L1 dApps directly with Aztec ecosystem",
+      "Growing community: strong developer traction, especially through Noir DSL for private/public contracts"
+    ],
+    "cons": [
+      "Different Virtual Machine: AVM is not EVM, requires learning Noir and new paradigms; some dev friction",
+      "Research phase: still under heavy R&D, which may deter risk-averse institutions",
+      "Winner choosing: working on Aztec means betting on one L2; could be seen as ecosystem fragmentation"
+    ]
+  },
+  {
+    "title": "Horizen",
+    "category": "Privacy L2s",
+    "website": "https://horizen-2-docs.horizen.io/",
+    "description": "<p>Horizen is an EVM L3 powered by op-enclave, built on top of Base L2, one of the highest-performance L2s in the Ethereum ecosystem. OP-enclave is a modified OP Stack that leverages Trusted Execution Environments (TEEs) for state transition proofs.</p><p>This model uses TEEs to isolate and encrypt computation, letting developers deploy privacy-preserving applications without needing advanced cryptography knowledge. It is unclear exactly how the design works, but it appears similar to ZKP, FHE, and MPC coprocessor architectures (e.g., Zama, Fhenix). They use zkVerify as a proof provider.</p><p>Their whitepaper: https://downloads.horizen.io/file/web-assets/Horizen-2.0-Whitepaper.pdf</p>",
+    "logo": "/logos/private-l2s/horizen.jpg",
+    "pros": [
+      "Private balance: FHE design hides balances between users, but the L3 operator can see balances",
+      "Sender privacy: sender address remains visible",
+      "Receiver privacy: recipient address remains visible",
+      "Off-chain co-processor: FHE and TEE computations happen off-chain; sequencer posts only state zk proofs",
+      "Built on Base: inherits speed and benefits from Base ecosystem demand",
+      "Old player in privacy: team has experimented with privacy systems since 2017",
+      "Grants and funding: Horizen offers developer grants for building on their network",
+      "Compliance: supports selective decryption due to maintaining the FHE private key"
+    ],
+    "cons": [
+      "External trust assumption: sequencer runs in AWS TEEs, which are known to be vulnerable in some attack scenarios",
+      "Lack of documentation: unclear guidance for building privacy apps; TEEs mentioned inconsistently between docs and whitepaper",
+      "Not mature ecosystem: few notable dApps currently deployed; indicates early-stage environment"
+    ]
+  },
+  {
+    "title": "Coti",
+    "category": "Privacy L2s",
+    "website": "https://docs.coti.io/coti-documentation/how-coti-works/introduction/garbled-circuits",
+    "description": "<p>They use Garbled circuits to run their EVM L2. In the field of secure multi-party computation (MPC), a garbling protocol enables two or more parties to jointly compute a function while keeping both their inputs and intermediate variables private. Introduced initially in the 1980s, garbling protocols have become a cornerstone for privacy-preserving technologies.</p><p>In the context of COTI V2, garbling protocols offer a revolutionary approach to handling transactional privacy. They can enable transactions and smart contract executions where the details (such as the amount of funds transferred, or the specific conditions of the contract) remain private between the involved parties. This level of privacy is particularly important in decentralized finance applications where transaction confidentiality can be as critical as transaction integrity.</p><p>COTI V2’s use of garbling protocols takes a completely novel approach. Unlike ZK solutions which support a single data source (or owner), and are expensive on the client side, garbling protocols enable computation on private data coming from many sources (or owners). Furthermore, they’re able to maintain private storage in addition to Ethereum’s standard public global state.</p>",
+    "logo": "/logos/private-l2s/coti.jpg",
+    "pros": [
+      "Private amount: garbled circuits keep transfer amounts private",
+      "Private sender: sender identity remains visible (standard smart contract transaction)",
+      "Private recipient: recipient identity remains visible (standard smart contract transaction)",
+      "Garbled circuits: novel MPC-style approach enabling confidential computation across multiple parties",
+      "Good docs and examples: reference implementation for private token transfers available in public repos"
+    ],
+    "cons": [
+      "Research phase: few real-world deployments of garbled circuits in Web3; maturity and battle-hardening unclear",
+      "Metadata leakage: depending on implementation, observing encrypted value exchanges may leak partial information"
+    ]
+  },
+  {
+    "title": "Nightfall",
+    "category": "Privacy L2s",
+    "website": "https://github.com/EYBlockchain/nightfall_4_CE/blob/master/doc/nf_4.md",
+    "description": "<p>A zk-rollup developed for privacy and focused on institutions. A private transaction works as follows:</p><ol><li>Privacy via commitments: on-chain data doesn’t reveal sender, recipient, or amounts.</li><li>Deposits move value from L1 into L2 (escrow) and create private commitments.</li><li>Transfers spend private commitments and create new ones for recipients.</li><li>Withdrawals spend commitments and de-escrow funds back to an L1 address.</li><li>Proposers generate rollup proofs; on-chain transactions appear uniform.</li></ol><p><strong>What the proofs assert:</strong></p><ol><li>Spend correctness: inputs belong to sender and are available to spend.</li><li>Value conservation: inputs = outputs + fee, enforced in-circuit.</li><li>Output formation: new output commitments are computed from recipient data and randomness using Poseidon hash.</li><li>Double-spend prevention: nullifiers derived from secret data prevent re-spending.</li><li>State transition: Merkle roots update correctly with nullified inputs and new commitments.</li></ol>",
+    "logo": "/logos/private-l2s/nightfall.png",
+    "pros": [
+      "Sender privacy: UTXO + client-side zk proofs hide sender balance and movements",
+      "Recipient privacy: incremental balance model hides recipient data",
+      "Amount privacy: only sender and recipient know the amount; only correctness proofs are public",
+      "Censorship resistance: zk proofs can be posted directly if sequencer censors users",
+      "Audit / selective disclosure: users can reveal specific UTXOs for compliance without exposing full history",
+      "Composability: users must enter the L2 for private actions and exit for public DeFi/NFT usage",
+      "Compliance: Proof-of-Innocence and selective disclosure possible",
+      "Institutional approach: EY Blockchain focuses on enterprise-grade integrations"
+    ],
+    "cons": [
+      "External trust assumption: sequencer must remain live and uncensored",
+      "Not mature enough: edge blockchain model is still early and untested",
+      "No modularity: requires full L2 entry/exit, not easily integrated with existing systems",
+      "Client-side proving: still immature and heavy for smooth UX",
+      "UTXOs kept locally: users must store their own UTXOs securely",
+      "Closed source: core Nightfall L2 appears not fully open; public repo only for Community Edition",
+      "Huge infrastructure requirements: sequencer reportedly needs 144 cores and 750GB RAM"
+    ]
+  },
+  {
+    "title": "Ten Protocol",
+    "category": "Privacy L2s",
+    "website": "https://docs.ten.xyz/docs/introduction/features",
+    "description": "<p>A Layer 2 using Trusted Execution Environments (TEEs) to create an encrypted EVM where only network nodes can see and execute transactions. Ten reintroduces data-access control to Web3, allowing compliance and secure execution (e.g., mitigating MEV). Smart contracts today can restrict who can write data, but not who can read it—Ten aims to fix this fundamental limitation.</p>",
+    "logo": "/logos/private-l2s/ten.jpg",
+    "pros": [
+      "Private balance: confidential ERC-20 tokens can be implemented natively on Ten",
+      "Private sender: sender address is public but balances remain private",
+      "Private recipient: recipient address is public but balances remain private",
+      "Efficiency: encrypted computation happens off-chain with no high gas costs or complex coprocessors",
+      "Access-control at protocol level: configurable access policies enable regulator visibility where needed"
+    ],
+    "cons": [
+      "External trust assumption: users must trust TEEs for liveness and censorship-resistance",
+      "Access-control risks: authorities or central parties may be able to view encrypted balances without user consent",
+      "TEEs vulnerabilities: known exploits could leak encrypted balance data; a malicious node could break the TEE locally",
+      "Infrastructure costs and challenges: TEEs typically run on cloud providers, creating cost and liveness risks"
+    ]
+  },
+  {
+    "title": "INCO",
+    "category": "Privacy L2s",
+    "website": "https://www.inco.org/",
+    "description": "<p>Inco stands for \"incognito\". It is currently TEE-based and provides an encrypted private EVM. Developers can write normal Solidity and import Inco libraries for encrypted data types and operations. A live demo exists for private transactions on Base Sepolia. Inco plans to migrate to INCO Atlas, an encrypted execution environment using FHE + MPC.</p><p>They published a Confidential ERC20 Framework whitepaper with Circle (USDC). Confidential transfers use FHE and ZKPs:</p><ol><li>ERC20 tokens are deposited into an escrow pool.</li><li>Confidential ERC20 tokens are minted on the INCO state.</li><li>Transfers use homomorphic operations over encrypted balances.</li></ol>",
+    "logo": "/logos/private-l2s/inco.jpg",
+    "pros": [
+      "Amount privacy: transferred amounts are hidden via TEEs (now) or FHE (future)",
+      "Sender & recipient privacy: sender/recipient addresses remain visible but balances are encrypted using FHE",
+      "Audit / selective disclosure: users generate view keypairs; TEEs re-encrypt balances for authorized auditors",
+      "Compatibility / composability: private tokens can be deployed on any EVM chain",
+      "Deployment complexity: requires no protocol changes; can be deployed on any EVM quickly",
+      "Strong partnerships: published encrypted ERC-20 framework with Circle (USDC)",
+      "Faster provider: TEEs offer faster performance than pure FHE/MPC systems"
+    ],
+    "cons": [
+      "External trust assumption: users must trust TEE providers today and FHE/MPC nodes in the future",
+      "TEEs vulnerabilities: known exploits may leak encrypted balances; malicious node could break TEE locally",
+      "Anonymity set: confidentiality depends on large user base; small usage weakens privacy",
+      "Metadata leakage: timing, frequency, and behavioral patterns may still leak information",
+      "Central disclosure: implementations may allow authorities or privileged parties to decrypt balances",
+      "Infrastructure costs and challenges: TEEs often run on cloud providers, introducing cost and liveness risks"
+    ]
+  },
+  {
+    "title": "Prividiums",
+    "category": "Privacy L2s",
+    "website": "https://www.zksync.io/prividium",
+    "description": "<p>These L2 sequencers receive transactions from users, generate blocks, store data locally, and post only zk proofs to Ethereum. This provides privacy without requiring third-party infrastructure beyond the organization’s sequencer. Prividiums include interoperability mechanisms enabling them to communicate privately and trustlessly, performing atomic swaps between chains.</p><p><strong>A Prividium includes:</strong></p><ol><li>High-throughput off-chain execution environment</li><li>Local or cloud-based data store</li><li>ZK prover generating proofs</li><li>Smart contract on Ethereum verifying proofs and anchoring finality</li></ol>",
+    "logo": "/logos/private-l2s/prividiums.jpg",
+    "pros": [
+      "Balance privacy: external parties cannot see balances, though operator can (useful for compliance)",
+      "Sender privacy: only the operator can view sender data",
+      "Buyer privacy: only the operator can view buyer/recipient data",
+      "Low computation costs: lightweight infrastructure due to L2 nature",
+      "Compliance: regulators can request access to Prividium data for auditing",
+      "Interop mechanism: supports private cross-chain token transfers via ZK-verified Merkle logs and coordinated proofs"
+    ],
+    "cons": [
+      "Liveness: centralized sequencer must remain online at all times",
+      "Operator oversight: sequencer can view all unencrypted data, similar to banking trust models",
+      "Censorship: single sequencer can censor transactions; decentralization planned but not implemented",
+      "Velocity: throughput depends entirely on operator’s infrastructure capacity"
+    ]
+  },
+  {
+    "title": "Payy Network",
+    "category": "Privacy L2s",
+    "website": "https://polybase.github.io/zk-rollup/whitepaper.pdf",
+    "description": "<p>An Ethereum L2 zk-rollup using a UTXO architecture to prioritize private transfers and compliance. Using UTXO notes and zk proofs, users can privately transact as if exchanging cash notes. User A sends a UTXO note to User B via a secure P2P channel or encrypted registry, while submitting a zk proof to the sequencer validating the note.</p><p><strong>Compliance mechanisms:</strong></p><ol><li><strong>Transaction lineage</strong> – full or partial lineage tracking to disable illicit funds without revealing details.</li><li><strong>Privacy pools</strong> – grouping actors into good/bad pools for risk-based filtering.</li><li><strong>Compliance ZK proofs</strong> – proving compliance constraints without revealing private data.</li></ol>",
+    "logo": "/logos/wallets/payy.jpg",
+    "pros": [
+      "Private balance: only sender and receiver know the amount being transacted",
+      "Sender privacy: sender reveals only the spent UTXO, not their remaining UTXOs",
+      "Receiver privacy: receiver stores the UTXO privately; sender cannot infer any additional balance data",
+      "Compliance: strong model ('guilty until proven innocent') integrating lineage, pools, and ZK proofs",
+      "Offline recipient support: encrypted UTXO can be stored on-chain for later retrieval and decryption",
+      "Decentralized sequencer network: staking-based system rotates block proposers and slashes inactivity"
+    ],
+    "cons": [
+      "Compatibility / modularity: L2 only supports private transfers; no smart contracts or dApp compatibility",
+      "Communication observer risk: P2P note exchange could be monitored, leaking metadata about transactions"
+    ]
+  },
+  {
+    "title": "ZEXE",
+    "category": "Research",
+    "website": "https://medium.com/@youssef.housni21/zexe-zero-knowledge-execution-ca616e87a3a9",
+    "description": "<p>ZEXE (Zero-Knowledge EXecution) is a cryptographic framework introduced in 2018 by ZCash researchers to enable users to execute smart contract functions locally and post only a proof on-chain. It aims to bring privacy-preserving smart contract execution to blockchains like ZCash. The approach inspired modern edge-blockchain designs such as Miden and Aztec, where computation is client-side and chains verify succinct proofs.</p><p>To guarantee correctness and confidentiality of arbitrary user-defined smart contract functions, the authors introduce the Record Nano-Kernel (RNK), a minimal operating system that:</p><ol><li>Provides process isolation</li><li>Determines data ownership</li><li>Handles inter-process communication</li></ol>",
+    "logo": "/logos/private-l2s/pse-horizontal-white.png",
+    "pros": [
+      "Private balances: client-side execution combined with on-chain proofs hides transaction amounts",
+      "Private sender and receiver: identities remain private since only proofs are posted",
+      "Modularity: later systems (e.g., Aztec) show private and public smart contract states are possible"
+    ],
+    "cons": [
+      "Client-side proving: still expensive and slow for mainstream mobile or desktop UX",
+      "Research only: no L2 implements ZEXE directly; serves as conceptual foundation for edge blockchains like Miden and Aztec"
+    ]
+  },
+  {
+    "title": "Monero",
+    "category": "Alternative L1s",
+    "website": "https://www.getmonero.org/",
+    "description": "<p>Private transfers are enabled by default: amounts, receivers, and senders are not visible.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>Bulletproofs</strong> — ensure output amounts are non-negative</li><li><strong>Ring signatures</strong> — multiple outputs are provided but only one is valid (Monero uses a UTXO-like model)</li><li><strong>Wallet integration</strong> — wallets scan new transactions and try to decrypt them using the view key</li><li><strong>Two keypairs</strong> — spend keypair and view keypair</li><li><strong>Stealth addresses</strong> — many unlinkable addresses can be derived from a master address</li></ol>",
+    "logo": "/logos/alternative-l1s/monero.jpg",
+    "pros": [
+      "Default privacy: no need for third-party tools or custom UX",
+      "Untraceable: transactions cannot be linked to identities or wallets",
+      "Mature cryptography: conservative design with battle-tested primitives"
+    ],
+    "cons": [
+      "Regulatory pressure: difficult to implement compliance or KYC due to lack of smart contracts",
+      "Transaction size: transactions are large and slower to verify",
+      "No smart contracts: cannot build dApps on Monero"
+    ]
+  },
+  {
+    "title": "ZCash",
+    "category": "Alternative L1s",
+    "website": "https://z.cash/",
+    "description": "<p>Private transfers are optional: amounts, receivers, and senders are hidden only for shielded transactions. ZCash uses zk-SNARKs to achieve this.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>zk-SNARKs</strong> – private verification of transaction data without revealing it</li><li><strong>Shielded addresses (z)</strong> – fully private transactions</li><li><strong>Transparent addresses (t)</strong> – public, similar to Ethereum addresses</li><li><strong>Selectively disclosure</strong> – viewing keys allow auditors to inspect private data</li><li><strong>Sapling & Halo 2</strong> – improve efficiency and remove trusted setup</li><li><strong>Wallet integration</strong> – similar scanning model to Monero</li><li><strong>Two keypairs</strong> – spend keypair and view keypair</li></ol><p><strong>Types of transfers:</strong></p><ol><li><strong>t → t</strong> – fully transparent</li><li><strong>t → z</strong> – sender visible, receiver private</li><li><strong>z → z</strong> – full privacy</li></ol>",
+    "logo": "/logos/alternative-l1s/zcash.jpg",
+    "pros": [
+      "Strong privacy: zk-SNARKs provide full data hiding",
+      "Selective transparency: viewing keys allow controlled disclosure",
+      "Smaller transaction size: more efficient than Monero",
+      "Audit-friendly: enables privacy while supporting institutional compliance"
+    ],
+    "cons": [
+      "Privacy not default: optional privacy weakens overall anonymity",
+      "Metadata leaks: mixing t and z patterns may reveal activity",
+      "Limited ecosystem support: some wallets/exchanges don't support shielded transactions"
+    ]
+  },
+  {
+    "title": "Penumbra",
+    "category": "Alternative L1s",
+    "website": "https://guide.penumbra.zone/overview/privacy",
+    "description": "<p>Private transfers are mandatory: all transactions are shielded by default. Sender, receiver, and amount are not visible on-chain. Penumbra uses zero-knowledge proofs to enable fully private balances and transfers.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>zk-SNARKs / ZK proofs</strong> – prove validity without revealing private data</li><li><strong>Shielded addresses</strong> – every user is in the shielded pool; no transparent mode exists</li><li><strong>No transparent mode</strong> – non-private transactions are not supported</li><li><strong>Selective disclosure</strong> – optional encrypted data reveal via viewing keys</li><li><strong>Viewing keys</strong> – fine-grained full-view or spend-view authorization</li><li><strong>Local proof generation</strong> – users create ZK proofs locally; chain only processes encrypted state transitions</li><li><strong>Ultra-light clients</strong> – optimized for private mobile/web wallets without full sync</li><li><strong>Decoupled state model</strong> – separates transaction vs. consensus state for privacy and scalability</li></ol>",
+    "logo": "/logos/alternative-l1s/penumbra.jpg",
+    "pros": [
+      "Privacy by default: stronger privacy than opt-in systems like ZCash",
+      "Cross-chain compatibility: supports private transfers for IBC assets (ATOM, OSMO, USDC, etc.)",
+      "No address reuse issues: privacy-preserving address derivation prevents linkability",
+      "Selective transparency: viewing keys allow granular compliance and auditing",
+      "Efficient for wallets: optimized for low bandwidth and fast proof handling",
+      "Integrated shielded DEX: private swaps and liquidity actions without leaking trading behavior"
+    ],
+    "cons": [
+      "Complex architecture: privacy across consensus, staking, and IBC adds complexity",
+      "Regulatory risk: strong privacy may face scrutiny in some jurisdictions",
+      "Limited adoption: early ecosystem with fewer integrations compared to ZCash"
+    ]
+  },
+  {
+    "title": "Namada",
+    "category": "Alternative L1s",
+    "website": "https://namada.net/",
+    "description": "<p>Private transfers are mandatory and asset-agnostic: amount, sender, and receiver are never visible within Namada’s Multi-Asset Shielded Pool (MASP). No transparent transactions exist.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>zk-SNARKs</strong> – validate transactions without revealing private data</li><li><strong>MASP (Multi-Asset Shielded Pool)</strong> – supports private transfers for any token, fungible or non-fungible</li><li><strong>Unified shielded address format</strong> – all assets share one anonymity set</li><li><strong>Selective disclosure</strong> – users generate viewing keys for auditors or trusted parties</li><li><strong>Viewing keys</strong> – read-only access for compliance or personal tracking</li><li><strong>Cross-chain asset support</strong> – private transfers for IBC assets and bridged Ethereum assets</li><li><strong>Shielded actions</strong> – enable private interactions with external applications and blockchains</li><li><strong>Shielding rewards</strong> – incentivize users to shield assets and increase the anonymity set</li></ol>",
+    "logo": "/logos/alternative-l1s/namada.jpg",
+    "pros": [
+      "Privacy by default: no data exposed unless explicitly revealed",
+      "Supports any asset: IBC and bridged assets can be shielded",
+      "Unified anonymity set: all assets share the same pool, strengthening privacy",
+      "Selective transparency: supports disclosures for compliance/auditing",
+      "Shielding incentives: rewards users for contributing to privacy",
+      "Cross-chain composability: provides privacy for Ethereum and Cosmos ecosystems",
+      "Public Goods Funding (PGF): ecosystem development funded via inflation"
+    ],
+    "cons": [
+      "Limited adoption: early-stage ecosystem with fewer integrations",
+      "Metadata risk via bridging: cross-chain operations may leak metadata",
+      "Complex user experience: viewing keys and ZK proofs add UX friction",
+      "Regulatory risk: full privacy may attract regulatory scrutiny"
+    ]
+  },
+  {
+    "title": "Mina",
+    "category": "Alternative L1s",
+    "website": "https://minaprotocol.com/",
+    "description": "<p>Private transfers are not the default: regular token transfers are public, but privacy-preserving applications (zkApps) can be built using zero-knowledge proofs. Mina’s primary value is lightweight zk programmability, not enforced private transfers. It functions mainly as a scalability and privacy-enabling platform rather than a private-transfer protocol.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>zk-SNARKs</strong> – recursive proofs keep the chain ~22 KB and enable private computation</li><li><strong>zkApps</strong> – smart contracts where sensitive data stays off-chain</li><li><strong>Local state execution</strong> – all private logic runs on the client</li><li><strong>Selective disclosure</strong> – apps reveal only necessary proof outcomes</li><li><strong>Verifiable computation</strong> – focus on proving statements about off-chain data</li><li><strong>Proof recursion</strong> – compose multiple zk proofs efficiently</li><li><strong>Ultra-light clients</strong> – full-node verification in browsers/phones</li></ol>",
+    "logo": "/logos/alternative-l1s/mina.png",
+    "pros": [
+      "Lightweight by design: ~22 KB chain size enables universal verification",
+      "Powerful privacy tooling: zkApps support application-specific privacy",
+      "Data minimization: prove facts without revealing underlying data",
+      "Recursive SNARKs: highly composable proof system",
+      "Ideal for web use cases: strong for identity and credential applications"
+    ],
+    "cons": [
+      "Privacy not default: token transfers remain public; no native private transfer layer",
+      "Limited adoption: early-stage ecosystem with fewer integrations and dApps"
+    ]
+  },
+  {
+    "title": "Canton Network",
+    "category": "Alternative L1s",
+    "website": "https://www.canton.network/faq",
+    "description": "<p>A privacy-focused L1 aimed at institutions and regulated financial entities. Canton provides selective visibility so that only parties who “need to know” see transaction details. Infrastructure nodes cannot inspect full transaction contents. Participants (e.g., banks, insurers) operate their own nodes containing only their users’ data, similar to real-world financial silos.</p><p><strong>How it works:</strong></p><ol><li>Smart contract validation and execution happen only on participant nodes directly involved in the transaction.</li><li>Sync domain operators (similar to validators/miners) handle ordering, timestamping, and coordination.</li><li>Transaction data is encrypted end-to-end; operators never access plaintext data.</li></ol>",
+    "logo": "/logos/alternative-l1s/canton-network.jpg",
+    "pros": [
+      "Canton Wallet launch generated strong traction and positive reception",
+      "Rewards program significantly boosted user onboarding and early growth"
+    ],
+    "cons": [
+      "Permissioned blockchain: relies on trust in participant nodes not to leak data; not a trustless system"
+    ]
+  },
+  {
+    "title": "Dero",
+    "category": "Alternative L1s",
+    "website": "https://dero.io/",
+    "description": "<p>Private transfers are the default: all transfers and smart contract interactions on Dero are private by design. Unlike opt-in privacy systems, Dero enforces confidentiality at the protocol level using homomorphic encryption. Its goal is to combine privacy, smart contracts, and scalability without compromising decentralization.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>Homomorphic Encryption</strong> – custom scheme enabling encrypted balances and transactions while still allowing verification</li><li><strong>Virtual Machine</strong> – smart contracts with encrypted inputs, state, and outputs</li><li><strong>Encrypted account model</strong> – avoids full-chain scanning by indexing encrypted balances</li><li><strong>Sigma-microblocks</strong> – frequent micro-block rewards improve miner participation and decentralization</li><li><strong>Instant balance lookups</strong> – encrypted balances are indexed for fast wallet queries</li><li><strong>AstroBWT</strong> – ASIC-resistant, CPU-friendly mining algorithm</li></ol>",
+    "logo": "/logos/alternative-l1s/dero.jpg",
+    "pros": [
+      "Privacy by default: all transactions and contract activity are encrypted",
+      "Encrypted smart contracts: confidential logic + data at the protocol layer",
+      "Efficient balance checks: no full-chain scanning required",
+      "No trusted setup: cryptography does not rely on a ceremony",
+      "Resilient mining: AstroBWT supports decentralized, CPU-friendly mining"
+    ],
+    "cons": [
+      "Complex, less-reviewed cryptography: DERO-HE lacks broad peer review compared to established ZK systems",
+      "Smaller ecosystem: limited integrations, exchanges, and tooling",
+      "High developer barrier: requires learning a unique VM and toolchain",
+      "Potential privacy leaks: some researchers question the robustness of Dero's privacy model"
+    ]
+  },
+  {
+    "title": "DarkFi",
+    "category": "Alternative L1s",
+    "website": "https://dark.fi/",
+    "description": "<p>Private, anonymous smart contracts and transactions are the default. All aspects of blockchain interaction are designed for complete anonymity, including transfers, contracts, and governance. DarkFi is a Layer 1 blockchain built with zero-knowledge proofs at its core.</p><p><strong>It's achievable by using:</strong></p><ol><li><strong>ZK-Proofs</strong> – anonymous transactions and smart contracts without revealing sender, receiver, or amount; zkas DSL used for circuit writing</li><li><strong>Anonymous account model</strong> – account-based but with hidden identities and balances</li><li><strong>Anonymous DAOs</strong> – governance with fully hidden participants and votes</li><li><strong>Anonymous atomic swaps</strong> – cross-chain swaps with no linkability</li><li><strong>Onion routing</strong> – Tor/I2P networking hides metadata and IP addresses</li><li><strong>Anonymous contracts & dApps</strong> – smart contracts written in DarkFi’s Rust-based language with default privacy</li><li><strong>No address reuse</strong> – stealth addressing and one-time keys prevent linkability</li></ol>",
+    "logo": "/logos/alternative-l1s/darkfi.jpg",
+    "pros": [
+      "Default full-stack anonymity: networking, contracts, and transactions are private",
+      "Smart contracts with privacy: private dApps and anonymous DAOs are natively supported",
+      "Composable anonymous primitives: powerful building blocks for private applications",
+      "Censorship-resistant: no compliance layers; fully user-controlled",
+      "New cryptographic designs: modern ZK systems enabling flexible programmability"
+    ],
+    "cons": [
+      "New cryptography: less battle-tested than Monero; risks from novel primitives",
+      "Early-stage: limited adoption, infrastructure, and wallet support",
+      "Regulatory attack surface: strong anonymity + finance attracts scrutiny",
+      "Complexity: ZK contracts are harder to write, audit, and maintain",
+      "Performance and scalability: ZK-heavy architectures face overhead at scale",
+      "Custom circuit DSL (zkas): not audited and limited adoption"
+    ]
+  },
+  {
+    "title": "Umbra",
+    "category": "Solana projects",
+    "website": "https://docs.umbraprivacy.com/docs/introduction",
+    "description": "<p>Umbra is a private transactions protocol combining multiple privacy techniques:</p><ol><li><strong>Non-linkable addresses</strong> created from a seed + nonce (deterministic stealth addresses)</li><li><strong>Relayers</strong> enabling new stealth addresses to execute claim transactions without needing SOL/ETH for gas</li><li><strong>Mixer pool</strong> where users can send tokens</li><li><strong>Encrypted token balances</strong> using elliptic curve cryptography, homomorphic encryption, and MPC</li></ol><p>Umbra encrypts all transfer amounts and balances. Every transfer amount is encrypted using the Rescue cipher, making values fully opaque to observers.</p>",
+    "logo": "/logos/solana-projects/umbra.jpg",
+    "pros": [
+      "Balance privacy: transfer amounts and balances encrypted with the Rescue cipher; EC + HE + MPC provider improves proving efficiency",
+      "Address unlinkability: deterministic stealth addresses prevent identity leakage and address reuse",
+      "Potential for auditability: structured encryption allows selective disclosure of specific transaction proofs without revealing full history"
+    ],
+    "cons": [
+      "Outsourced HE provider: MPC/HE network is operated by a third party (Arcium)",
+      "Fragile n-of-n encryption threshold: if even one MPC node becomes unavailable or malicious, the whole protocol may halt"
+    ]
+  },
+  {
+    "title": "zk-locomotive (zkLambda)",
+    "category": "Solana projects",
+    "website": "https://github.com/zklambda#user-story",
+    "description": "<p>A privacy-preserving file transfer system using zk proofs and encryption. The sender encrypts a file with the recipient’s public key, publishes the encrypted blob on-chain, and the recipient later downloads and decrypts it. The system also supports token transfers between networks (e.g. Ethereum → Solana) via the Wormhole bridge (not to be confused with zkWormholes / EIP-7503).</p>",
+    "logo": "/logos/solana-projects/zk-lambda.png",
+    "pros": [
+      "Private balance & recipient: files/payloads are encrypted under the recipient’s public key; only they can decrypt the ciphertext",
+      "Cross-chain interoperability: encrypted payloads or tokenized proofs can be bridged across networks using infrastructure like Wormhole"
+    ],
+    "cons": [
+      "Lack of maturity: no new commits since March; demo interface shown but not functional",
+      "Metadata leakage: CCIR public registry links wallet addresses to public keys; timing and network metadata may expose sender/receiver relationships without additional obfuscation"
+    ]
+  },
+  {
+    "title": "Arcium Network",
+    "category": "Solana projects",
+    "website": "https://docs.arcium.com/",
+    "description": "<p>An encrypted computation network described as an 'encrypted supercomputer.' Arcium provides a decentralized MPC network using secret sharing and threshold encryption. Developers can run arbitrary computations over encrypted data without exposing inputs or intermediate values. Several privacy applications, such as Umbra on Solana, run on Arcium's MPC infrastructure. Elusiv, their previous shielded transfer protocol, is now discontinued and in withdraw-only mode.</p>",
+    "logo": "/logos/solana-projects/arcium.jpg",
+    "pros": [
+      "General-purpose encrypted computation via MPC; developers can run arbitrary encrypted workloads",
+      "Modular security configuration allowing developers to tune parameters like cluster size, MPC protocol, and security model",
+      "Low barrier to entry for node operators with documented instructions for running Arcium MPC nodes",
+      "Developer-friendly toolkit where Solana apps can annotate confidential functions without mastering cryptography",
+      "Economic sustainability through staking/slashing using the ARX token",
+      "Production usage: Umbra private transfers use Arcium as their MPC backend"
+    ],
+    "cons": [
+      "External trust assumption: users must trust Arcium nodes for liveness, correctness, and censorship resistance",
+      "Metadata leakage: timing, MPC cluster patterns, or invocation behavior may reveal correlations despite encrypted data",
+      "Performance & cost constraints: MPC workloads can be heavy; large computations or high traffic can cause latency or bandwidth issues"
+    ]
+  },
+  {
+    "title": "Encifher",
+    "category": "Solana projects",
+    "website": "https://docs.encifher.io/docs/how-it-works",
+    "description": "<p>Encifher encrypts user token balances using threshold ElGamal encryption. Encrypted balances are stored off-chain in a data-availability layer while on-chain programs handle only cryptographic pointers (hashes/commitments). Users see plaintext amounts locally, but the chain sees only encrypted balance transitions. The system uses ephemeral accounts to avoid address reuse and integrates with Jupiter DEX by exposing token identifiers for routing.</p>",
+    "logo": "/logos/solana-projects/encifher.jpg",
+    "pros": [
+      "Private balances: encrypted swaps and transfers hide amount and recipient; on-chain interactions only see encrypted state transitions",
+      "Ephemeral accounts improve unlinkability by preventing address reuse across operations",
+      "Hybrid off-chain/on-chain design: heavy crypto handled by TEEs, while Solana programs manage lightweight pointer updates",
+      "Near-native UX: encrypted SPL swaps aim to match normal Solana swap latency and gas profile",
+      "Compliance support through Predicate and Chainalysis integrations"
+    ],
+    "cons": [
+      "External trust assumption: relies on external provider availability and correctness for encrypted state resolution",
+      "TEE reliance: TEEs have known vulnerabilities that could expose encrypted contents or private keys",
+      "Unclear threshold key security: documentation lacks detail on key rotation, threshold parameters, and anti-collusion design",
+      "Small anonymity set risk: low usage reduces privacy strength",
+      "Metadata leakage: pointer updates, ephemeral account behavior, and timing patterns can expose side-channel information"
+    ]
+  },
+  {
+    "title": "Voidify",
+    "category": "Solana projects",
+    "website": "https://voidify.gitbook.io/whitepaper",
+    "description": "<p>Voidify is a zk-based mixer on Solana. Users deposit SOL or SPL tokens from address A, generate a zero-knowledge proof that they deposited a specific amount, and later use that proof to withdraw to address B without linking the two addresses. The protocol uses Poseidon hashes for efficient zk-circuit performance, mirroring Tornado Cash but optimized for Solana.</p>",
+    "logo": "/logos/solana-projects/voidify.jpg",
+    "pros": [
+      "Simplicity: fully on-chain implementation with no external dependencies",
+      "Unlinkability: similar to Tornado Cash, deposits and withdrawals cannot be linked",
+      "Multi-token support: supports SOL and various SPL tokens",
+      "Compliance: Proof-of-Innocence integration to filter blacklisted or illicit funds",
+      "Relayers: hide sender identity and enable gasless withdrawals"
+    ],
+    "cons": [
+      "Anonymity set limitations: privacy weakens when few users deposit in a pool or denomination",
+      "User hygiene requirements: improper usage (e.g., immediate withdrawal, address reuse) can compromise privacy"
+    ]
+  },
+  {
+    "title": "Bonsol",
+    "category": "Solana projects",
+    "website": "https://bonsol.sh/docs/tutorials/a-taste-of-bonsol",
+    "description": "<p>Bonsol is a zk-prover framework built on top of Risc Zero, designed to enable private zk program execution on Solana. It allows developers to write applications with both public and private state using zero-knowledge proofs, verified by on-chain verifier programs deployed on Solana.</p>",
+    "logo": "/logos/solana-projects/bonsol.jpg",
+    "pros": [
+      "General-purpose zk execution: enables arbitrary computations inside zk programs",
+      "Solana integration: verifier programs deployed on Solana validate proofs on-chain",
+      "Flexible public/private inputs: developers choose what is revealed or kept private"
+    ],
+    "cons": [
+      "Not an end-to-end privacy protocol: limited real-world apps using Bonsol for private transfers",
+      "Third-party trust assumption: introduces a zk proving coprocessor with its own risks",
+      "DoS vulnerability: no node network or economic incentives, risking denial-of-service on heavy proof workloads"
+    ]
+  },
+  {
+    "title": "Privacy Cash",
+    "category": "Solana projects",
+    "website": "https://www.privacycash.org/",
+    "description": "<p>Privacy Cash is a Tornado Cash–style mixer on Solana that supports SOL and SPL tokens. Users deposit tokens into a pool and later withdraw the same amount to a different address using zero-knowledge proofs, preventing observers from linking deposits and withdrawals. The system works entirely on-chain and supports compliance mechanisms such as Proof-of-Innocence.</p>",
+    "logo": "/logos/solana-projects/privacy-cash.jpg",
+    "pros": [
+      "Simplicity: fully on-chain implementation with no external dependencies",
+      "Unlinkability: deposits and withdrawals cannot be linked, similar to Tornado Cash",
+      "Multi-token support: supports SOL and SPL tokens",
+      "Compliance: integrates Proof-of-Innocence to filter illicit funds"
+    ],
+    "cons": [
+      "Lack of documentation: only GitHub repo and audit PDFs available, no clear docs or guides",
+      "Anonymity set limitations: low usage reduces privacy and increases linkability risk",
+      "User hygiene requirements: improper usage (e.g., immediate withdrawal, address reuse) undermines privacy"
+    ]
+  },
+  {
+    "title": "Solana Confidential Balances",
+    "category": "Solana projects",
+    "website": "https://www.helius.dev/blog/confidential-balances",
+    "description": "<p>A native Solana extension that introduces confidential balances using zero-knowledge proofs and threshold ElGamal encryption. Users deposit tokens into a shielded pool where balances and transfer amounts remain encrypted. Transfers occur between encrypted accounts while maintaining correctness through ZK range, equality, and validity proofs. A pending-state model prevents misuse before encrypted credits finalize, improving safety. Users can withdraw from the shielded pool at any time.</p>",
+    "logo": "/logos/solana-projects/solana.jpg",
+    "pros": [
+      "Native integration: validators run confidential balance logic as part of the Solana runtime",
+      "Private balances: amounts are encrypted using HE (ElGamal) + MPC",
+      "Correct execution: ZK proofs ensure valid transfers without revealing amounts",
+      "Pending model: prevents race conditions and front-running on encrypted balances",
+      "Opt-in compliance: confidentiality level can be app-dependent"
+    ],
+    "cons": [
+      "No SDK or wallet integration yet: only Rust CLI tooling available",
+      "Pending audit: ZK ElGamal program disabled on mainnet/devnet until audit completes",
+      "No private sender or recipient: only amounts/balances are hidden; addresses remain public",
+      "Side-channel leakage: timing, frequency, pending→available transitions may leak metadata"
+    ]
   }
 ]
