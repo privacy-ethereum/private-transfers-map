@@ -769,7 +769,7 @@
   },
   {
     "title": "ZEXE",
-    "category": "Research",
+    "category": "Privacy L2s",
     "website": "https://medium.com/@youssef.housni21/zexe-zero-knowledge-execution-ca616e87a3a9",
     "description": "<p>ZEXE (Zero-Knowledge EXecution) is a cryptographic framework introduced in 2018 by ZCash researchers to enable users to execute smart contract functions locally and post only a proof on-chain. It aims to bring privacy-preserving smart contract execution to blockchains like ZCash. The approach inspired modern edge-blockchain designs such as Miden and Aztec, where computation is client-side and chains verify succinct proofs.</p><p>To guarantee correctness and confidentiality of arbitrary user-defined smart contract functions, the authors introduce the Record Nano-Kernel (RNK), a minimal operating system that:</p><ol><li>Provides process isolation</li><li>Determines data ownership</li><li>Handles inter-process communication</li></ol>",
     "logo": "/logos/private-l2s/pse-horizontal-white.png",

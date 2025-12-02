@@ -25,13 +25,12 @@ function CategoryWheel({
     "Shielded Pools (+DeFi)": "#10B981",
     zkWormholes: "#6366F1",
     Wallets: "#4B5563",
-    Research: "#8B5CF6",
   };
 
   const totalCategories = categories.length;
   const anglePerCategory = 360 / totalCategories;
-  const radius = 140;
-  const innerRadius = 80;
+  const radius = 145;
+  const innerRadius = 30;
 
   const createWedgePath = (index: number) => {
     const startAngle = (index * anglePerCategory - 90) * (Math.PI / 180);
@@ -55,7 +54,13 @@ function CategoryWheel({
     const labelRadius = (radius + innerRadius) / 2;
     const x = 150 + labelRadius * Math.cos(angle);
     const y = 150 + labelRadius * Math.sin(angle);
-    const rotation = (index + 0.5) * anglePerCategory;
+    // Rotate text 90 degrees so it reads along the radius (from edge to center)
+    let rotation = (index + 0.5) * anglePerCategory + 90;
+
+    // Flip text on the left side of the wheel to keep it readable
+    if (rotation > 90 && rotation < 270) {
+      rotation = rotation + 180;
+    }
 
     return { x, y, rotation };
   };
@@ -68,7 +73,7 @@ function CategoryWheel({
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
-          {categories.map((category, index) => (
+          {categories.map((category) => (
             <filter
               key={`glow-${category}`}
               id={`glow-${category}`}
@@ -149,26 +154,6 @@ function CategoryWheel({
           stroke="#14B8A6"
           strokeWidth="2"
         />
-
-        {/* Center text */}
-        <text
-          x="150"
-          y="145"
-          textAnchor="middle"
-          className="wheel-center-text"
-          style={{ fontSize: "14px", fill: "#14B8A6", fontWeight: "500" }}
-        >
-          Private
-        </text>
-        <text
-          x="150"
-          y="160"
-          textAnchor="middle"
-          className="wheel-center-text"
-          style={{ fontSize: "14px", fill: "#14B8A6", fontWeight: "500" }}
-        >
-          Transfers
-        </text>
       </svg>
 
       {/* Selected category display */}
