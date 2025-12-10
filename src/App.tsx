@@ -53,8 +53,8 @@ function App() {
             />
             <h1>Private Transfers Map</h1>
             <p className="subtitle">
-              Explore and discover private transfer projects in the Ethereum
-              ecosystem
+              Explore and discover private transfer projects in the Ethereum and
+              other ecosystems
             </p>
             <SearchBar
               searchQuery={searchQuery}
