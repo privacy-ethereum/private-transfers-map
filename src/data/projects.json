@@ -936,7 +936,7 @@
   },
   {
     "title": "Umbra",
-    "category": "Solana projects",
+    "category": "Alternative L1s",
     "website": "https://docs.umbraprivacy.com/docs/introduction",
     "description": "<p>Umbra is a private transactions protocol combining multiple privacy techniques:</p><ol><li><strong>Non-linkable addresses</strong> created from a seed + nonce (deterministic stealth addresses)</li><li><strong>Relayers</strong> enabling new stealth addresses to execute claim transactions without needing SOL/ETH for gas</li><li><strong>Mixer pool</strong> where users can send tokens</li><li><strong>Encrypted token balances</strong> using elliptic curve cryptography, homomorphic encryption, and MPC</li></ol><p>Umbra encrypts all transfer amounts and balances. Every transfer amount is encrypted using the Rescue cipher, making values fully opaque to observers.</p>",
     "logo": "/logos/solana-projects/umbra.jpg",
@@ -952,7 +952,7 @@
   },
   {
     "title": "zk-locomotive (zkLambda)",
-    "category": "Solana projects",
+    "category": "Alternative L1s",
     "website": "https://github.com/zklambda#user-story",
     "description": "<p>A privacy-preserving file transfer system using zk proofs and encryption. The sender encrypts a file with the recipient’s public key, publishes the encrypted blob on-chain, and the recipient later downloads and decrypts it. The system also supports token transfers between networks (e.g. Ethereum → Solana) via the Wormhole bridge (not to be confused with zkWormholes / EIP-7503).</p>",
     "logo": "/logos/solana-projects/zk-lambda.png",
@@ -967,7 +967,7 @@
   },
   {
     "title": "Arcium Network",
-    "category": "Solana projects",
+    "category": "Alternative L1s",
     "website": "https://docs.arcium.com/",
     "description": "<p>An encrypted computation network described as an 'encrypted supercomputer.' Arcium provides a decentralized MPC network using secret sharing and threshold encryption. Developers can run arbitrary computations over encrypted data without exposing inputs or intermediate values. Several privacy applications, such as Umbra on Solana, run on Arcium's MPC infrastructure. Elusiv, their previous shielded transfer protocol, is now discontinued and in withdraw-only mode.</p>",
     "logo": "/logos/solana-projects/arcium.jpg",
@@ -987,7 +987,7 @@
   },
   {
     "title": "Encifher",
-    "category": "Solana projects",
+    "category": "Alternative L1s",
     "website": "https://docs.encifher.io/docs/how-it-works",
     "description": "<p>Encifher encrypts user token balances using threshold ElGamal encryption. Encrypted balances are stored off-chain in a data-availability layer while on-chain programs handle only cryptographic pointers (hashes/commitments). Users see plaintext amounts locally, but the chain sees only encrypted balance transitions. The system uses ephemeral accounts to avoid address reuse and integrates with Jupiter DEX by exposing token identifiers for routing.</p>",
     "logo": "/logos/solana-projects/encifher.jpg",
@@ -1008,7 +1008,7 @@
   },
   {
     "title": "Voidify",
-    "category": "Solana projects",
+    "category": "Alternative L1s",
     "website": "https://voidify.gitbook.io/whitepaper",
     "description": "<p>Voidify is a zk-based mixer on Solana. Users deposit SOL or SPL tokens from address A, generate a zero-knowledge proof that they deposited a specific amount, and later use that proof to withdraw to address B without linking the two addresses. The protocol uses Poseidon hashes for efficient zk-circuit performance, mirroring Tornado Cash but optimized for Solana.</p>",
     "logo": "/logos/solana-projects/voidify.jpg",
@@ -1026,7 +1026,7 @@
   },
   {
     "title": "Bonsol",
-    "category": "Solana projects",
+    "category": "Alternative L1s",
     "website": "https://bonsol.sh/docs/tutorials/a-taste-of-bonsol",
     "description": "<p>Bonsol is a zk-prover framework built on top of Risc Zero, designed to enable private zk program execution on Solana. It allows developers to write applications with both public and private state using zero-knowledge proofs, verified by on-chain verifier programs deployed on Solana.</p>",
     "logo": "/logos/solana-projects/bonsol.jpg",
@@ -1043,7 +1043,7 @@
   },
   {
     "title": "Privacy Cash",
-    "category": "Solana projects",
+    "category": "Alternative L1s",
     "website": "https://www.privacycash.org/",
     "description": "<p>Privacy Cash is a Tornado Cash–style mixer on Solana that supports SOL and SPL tokens. Users deposit tokens into a pool and later withdraw the same amount to a different address using zero-knowledge proofs, preventing observers from linking deposits and withdrawals. The system works entirely on-chain and supports compliance mechanisms such as Proof-of-Innocence.</p>",
     "logo": "/logos/solana-projects/privacy-cash.jpg",
@@ -1061,7 +1061,7 @@
   },
   {
     "title": "Solana Confidential Balances",
-    "category": "Solana projects",
+    "category": "Alternative L1s",
     "website": "https://www.helius.dev/blog/confidential-balances",
     "description": "<p>A native Solana extension that introduces confidential balances using zero-knowledge proofs and threshold ElGamal encryption. Users deposit tokens into a shielded pool where balances and transfer amounts remain encrypted. Transfers occur between encrypted accounts while maintaining correctness through ZK range, equality, and validity proofs. A pending-state model prevents misuse before encrypted credits finalize, improving safety. Users can withdraw from the shielded pool at any time.</p>",
     "logo": "/logos/solana-projects/solana.jpg",
